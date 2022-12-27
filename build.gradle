@@ -1,6 +1,10 @@
 buildscript {
+    ext {
+        kotlin_version = '1.8.0-RC2'
+    }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.0.0-alpha10'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
     repositories {
         google()
@@ -8,7 +12,6 @@ buildscript {
         maven {
             url 'https://jitpack.io'
         }
-        jcenter()
     }
 }
 
