@@ -13,6 +13,7 @@ android {
         targetSdk 33
         versionCode 10
         versionName "2.0.0"
+        resConfigs "en"
     }
 
     buildTypes {
@@ -27,6 +28,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 
