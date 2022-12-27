@@ -50,4 +50,10 @@ dependencies {
 
     ///SU
     implementation 'com.github.topjohnwu.libsu:core:5.0.3'
+
+    ///ViewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0-alpha03'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha03'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.0-alpha03'
 }
