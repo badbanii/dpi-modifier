@@ -25,4 +25,9 @@ class NewbieFragment : Fragment(R.layout.fragment_newbie) {
         _binding = FragmentNewbieBinding.bind(view)
     }
 
+    private fun updateDpiTo(dpi:Int)
+    {
+        viewModel.updateDpiTo(301)
+    }
+
 }

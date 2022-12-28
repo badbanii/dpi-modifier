@@ -23,6 +23,7 @@ class AdvancedFragment : Fragment(R.layout.fragment_advanced) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAdvancedBinding.bind(view)
+
     }
 
 }
