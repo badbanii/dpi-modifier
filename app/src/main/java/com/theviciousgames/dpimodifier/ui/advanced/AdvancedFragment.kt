@@ -1,11 +1,14 @@
 package com.theviciousgames.dpimodifier.ui.advanced
 
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.theviciousgames.dpimodifier.R
 import com.theviciousgames.dpimodifier.databinding.FragmentAdvancedBinding
+
 
 class AdvancedFragment : Fragment(R.layout.fragment_advanced) {
 
@@ -24,6 +27,10 @@ class AdvancedFragment : Fragment(R.layout.fragment_advanced) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAdvancedBinding.bind(view)
 
-    }
-
-}
+        val dm = DisplayMetrics()
+        requireActivity().getWindowManager().getDefaultDisplay().getMetrics(dm)
+        val dpiClassification = dm.densityDpi
+        val xDpi = dm.xdpi
+        val yDpi = dm.ydpi
+        Log.d("debug",dm.density.toString())
+}}
