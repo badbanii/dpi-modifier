@@ -2,18 +2,146 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EFEEEE">
+
+    <soup.neumorphism.NeumorphImageButton
+        android:id="@+id/flat_image_view"
+        style="@style/Widget.Neumorph.ImageButton"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_menu"
+      app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+      />
 
     <TextView
         android:id="@+id/textview_dpi_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textview_dpi_val"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="DPI"
+        android:textSize="20sp"
+        android:textColor="#838383"
+        />
+
+    <TextView
+        android:fontFamily="@font/google_sans_text_bold_italic"
+        android:id="@+id/textview_dpi_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="DPI"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="200"
+        android:textSize="70sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="40dp"
+        />
+
+    <TextView
+        android:id="@+id/textview_modes_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textview_dpi_title"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10dp"
+        android:text="modes"
+        android:textSize="20sp"
         android:textColor="#838383"
         android:layout_marginTop="60dp"
-        android:layout_marginStart="30dp"
         />
+
+    <LinearLayout
+        android:id="@+id/layout_modes_buttons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@id/textview_modes_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
+        >
+        <soup.neumorphism.NeumorphButton
+            android:id="@+id/button_simple"
+            style="@style/Widget.Neumorph.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:drawablePadding="8dp"
+            android:text="  simple  "
+            android:textAlignment="center"
+            android:layout_weight="1"
+            app:drawableStartCompat="@drawable/ic_simple" />
+        <soup.neumorphism.NeumorphButton
+            android:id="@+id/button_advanced"
+            android:layout_weight="1"
+            style="@style/Widget.Neumorph.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:drawablePadding="8dp"
+            android:textAlignment="center"
+            android:text="advanced"
+            app:drawableStartCompat="@drawable/ic_advanced"
+           />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textview_presets_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/layout_modes_buttons"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10dp"
+        android:text="presets"
+        android:textSize="20sp"
+        android:textColor="#838383"
+        />
+    <LinearLayout
+        android:id="@+id/layout_presets_buttons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@id/textview_presets_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
+        >
+        <soup.neumorphism.NeumorphButton
+            android:id="@+id/button_add"
+            style="@style/Widget.Neumorph.Button"
+            app:layout_constraintTop_toBottomOf="@id/textview_presets_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:text="Add"
+
+            android:textAlignment="textStart"
+            android:layout_weight="1"
+            app:drawableStartCompat="@drawable/ic_add" />
+
+        <soup.neumorphism.NeumorphButton
+            android:layout_weight="1"
+            android:visibility="invisible"
+            style="@style/Widget.Neumorph.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:textAlignment="center"
+
+            app:drawableStartCompat="@drawable/ic_advanced"
+            />
+    </LinearLayout>
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

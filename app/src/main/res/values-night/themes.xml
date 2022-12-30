@@ -1,16 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-
-
 
     <style name="Theme.DPIModifier" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
+
         <item name="colorPrimary">@color/background</item>
         <item name="colorPrimaryDark">@color/background</item>
         <item name="colorAccent">@color/color_accent</item>
 
         <item name="android:windowBackground">@color/background</item>
-        <item name="android:navigationBarColor">@color/background</item>
+        <item name="android:navigationBarColor">#EFEEEE</item>
+        <item name="android:statusBarColor">#EFEEEE</item>
+
     </style>
     <style name="CustomShapeAppearance">
         <item name="neumorph_cornerFamily">rounded</item>

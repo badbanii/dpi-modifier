@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.theviciousgames.dpimodifier.R
 import com.theviciousgames.dpimodifier.databinding.FragmentWelcomeBinding
 import com.theviciousgames.dpimodifier.ui.newbie.NewbieFragmentViewModel
@@ -24,6 +25,10 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
        _binding = FragmentWelcomeBinding.bind(view)
+
+        binding.flatImageView.setOnClickListener {
+            findNavController().navigate(R.id.action_welcomeFragment_to_dashboardFragment)
+        }
 
 
     }

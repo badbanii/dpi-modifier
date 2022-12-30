@@ -1,10 +1,10 @@
 package com.theviciousgames.dpimodifier.ui.newbie
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.theviciousgames.dpimodifier.R
 import com.theviciousgames.dpimodifier.databinding.FragmentNewbieBinding
 import com.theviciousgames.dpimodifier.getDpi
@@ -29,7 +29,10 @@ class NewbieFragment : Fragment(R.layout.fragment_newbie) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentNewbieBinding.bind(view)
 
-        Log.d("debug",getCurrentDpi().toString())
+        binding.buttonBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+        binding.textviewDpiVal.text= getDpi(requireActivity()).toString()
     }
 
     private fun updateDpiTo(dpi:Int)
