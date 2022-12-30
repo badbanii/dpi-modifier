@@ -14,9 +14,9 @@ class DashboardFragmentViewModel @Inject constructor(
     var newDpi=0
     var oldDpi=0
 
-    fun hasRootAccess()
+    fun hasRootAccess(): Boolean?
     {
-        suShell.hasRootAccess()
+        return suShell.hasRootAccess()
     }
 
     fun shellTest(cmd:String)

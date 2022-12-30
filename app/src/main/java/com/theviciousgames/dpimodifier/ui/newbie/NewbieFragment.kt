@@ -14,11 +14,40 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class NewbieFragment : Fragment(R.layout.fragment_newbie) {
 
+    private var _binding: FragmentNewbieBinding? = null
     private val viewModel: NewbieFragmentViewModel by viewModels()
 
-    private var _binding: FragmentNewbieBinding? = null
     private val binding: FragmentNewbieBinding
         get() = _binding!!
+
+    private fun buttonFunctions() {
+        binding.buttonBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        binding.buttonAdd.setOnClickListener {
+            increaseDpiByFive()
+        }
+        binding.buttonSubstract.setOnClickListener {
+            decreaseDpiByFive()
+        }
+    }
+
+    private fun decreaseDpiByFive() {
+        viewModel.updateDpiTo(getDpi(requireActivity()) - 5)
+    }
+
+    private fun getCurrentDpi(): Int {
+        return getDpi(requireActivity())
+    }
+
+    private fun increaseDpiByFive() {
+        viewModel.updateDpiTo(getDpi(requireActivity()) + 5)
+    }
+
+    private fun updateUi() {
+        binding.textviewDpiVal.text = getCurrentDpi().toString()
+    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -28,20 +57,8 @@ class NewbieFragment : Fragment(R.layout.fragment_newbie) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentNewbieBinding.bind(view)
-
-        binding.buttonBack.setOnClickListener {
-            findNavController().navigateUp()
-        }
-        binding.textviewDpiVal.text= getDpi(requireActivity()).toString()
+        updateUi()
+        buttonFunctions()
     }
 
-    private fun updateDpiTo(dpi:Int)
-    {
-        viewModel.updateDpiTo(301)
-    }
-
-    private fun getCurrentDpi():Int
-    {
-        return getDpi(requireActivity())
-    }
 }

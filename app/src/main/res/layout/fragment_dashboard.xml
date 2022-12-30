@@ -17,6 +17,7 @@
       />
 
     <TextView
+        android:fontFamily="@font/google_sans_text"
         android:id="@+id/textview_dpi_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,10 +50,11 @@
         app:layout_constraintTop_toBottomOf="@id/textview_dpi_title"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="10dp"
+        android:fontFamily="@font/google_sans_text"
         android:text="modes"
         android:textSize="20sp"
         android:textColor="#838383"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="36dp"
         />
 
     <LinearLayout
@@ -71,9 +73,9 @@
             style="@style/Widget.Neumorph.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
             android:drawablePadding="8dp"
             android:text="  simple  "
+            android:fontFamily="@font/google_sans_text_bold"
             android:textAlignment="center"
             android:layout_weight="1"
             app:drawableStartCompat="@drawable/ic_simple" />
@@ -83,7 +85,7 @@
             style="@style/Widget.Neumorph.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
+            android:fontFamily="@font/google_sans_text_bold"
             android:drawablePadding="8dp"
             android:textAlignment="center"
             android:text="advanced"
@@ -92,13 +94,70 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textview_presets_title"
+        android:id="@+id/textview_root_status_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/layout_modes_buttons"
         app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/google_sans_text"
+        android:layout_marginStart="10dp"
+        android:text="root status"
+        android:layout_marginTop="36dp"
+        android:textSize="20sp"
+        android:textColor="#838383"
+        />
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/cardview_root_status"
+        style="@style/Widget.Neumorph.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_root_status_title"
+        app:neumorph_shapeType="pressed">
+
+        <RelativeLayout
+            android:id="@+id/layout_root_status"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/textview_root_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Your phone is rooted."
+                android:fontFamily="@font/google_sans_text_bold"
+                android:layout_marginTop="36dp"
+                android:textSize="20sp"
+                android:textColor="#838383"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/imageview_root_status"
+                />
+
+            <ImageView
+                android:src="@drawable/ic_check"
+                android:id="@+id/imageview_root_status"
+                android:layout_width="40dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="14dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                />
+        </RelativeLayout>
+
+
+    </soup.neumorphism.NeumorphCardView>
+
+    <TextView
+        android:id="@+id/textview_presets_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cardview_root_status"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="10dp"
         android:text="presets"
+        android:layout_marginTop="36dp"
         android:textSize="20sp"
         android:textColor="#838383"
         />
@@ -121,7 +180,7 @@
             android:layout_height="wrap_content"
             android:drawablePadding="8dp"
             android:text="Add"
-
+            android:fontFamily="@font/google_sans_text_bold"
             android:textAlignment="textStart"
             android:layout_weight="1"
             app:drawableStartCompat="@drawable/ic_add" />
@@ -134,10 +193,11 @@
             android:layout_height="wrap_content"
             android:drawablePadding="8dp"
             android:textAlignment="center"
-
             app:drawableStartCompat="@drawable/ic_advanced"
             />
     </LinearLayout>
+
+
 
 
 

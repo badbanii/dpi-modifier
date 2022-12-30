@@ -67,4 +67,7 @@ dependencies {
     ///UI
     implementation 'com.github.fornewid:neumorphism:0.3.2'
 
+    ///Coil
+    implementation("io.coil-kt:coil:2.2.2")
+
 }
