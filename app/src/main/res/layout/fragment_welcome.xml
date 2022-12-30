@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EFEEEE">
+
+    <TextView
+        android:id="@+id/textview_title_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tune it"
+        android:textSize="50sp"
+        android:textColor="#080808"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/google_sans_text_bold_italic"
+        />
+
+    <TextView
+        android:id="@+id/textview_title_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The way you want it"
+        android:textSize="32sp"
+        android:textColor="#F9D16B"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_title_1"
+        android:fontFamily="@font/google_sans_text_bold_italic"
+        />
+
+    <soup.neumorphism.NeumorphImageButton
+        android:id="@+id/flat_image_view"
+        style="@style/Widget.Neumorph.ImageButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="48dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/ic_right_arrow"/>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

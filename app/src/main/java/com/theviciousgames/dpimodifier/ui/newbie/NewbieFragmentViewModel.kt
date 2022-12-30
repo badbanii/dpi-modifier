@@ -1,4 +1,4 @@
-package com.theviciousgames.dpimodifier.ui.newbie.newbie
+package com.theviciousgames.dpimodifier.ui.newbie
 
 import androidx.lifecycle.ViewModel
 import com.theviciousgames.dpimodifier.su.SuShell

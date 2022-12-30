@@ -1,0 +1,31 @@
+package com.theviciousgames.dpimodifier.ui.welcome
+
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.theviciousgames.dpimodifier.R
+import com.theviciousgames.dpimodifier.databinding.FragmentWelcomeBinding
+import com.theviciousgames.dpimodifier.ui.newbie.NewbieFragmentViewModel
+
+class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
+
+    private var _binding: FragmentWelcomeBinding? = null
+    private val viewModel: NewbieFragmentViewModel by viewModels()
+
+    private val binding: FragmentWelcomeBinding
+        get() = _binding!!
+
+    override fun onDestroy() {
+        super.onDestroy()
+          _binding = null
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+       _binding = FragmentWelcomeBinding.bind(view)
+
+
+    }
+
+}

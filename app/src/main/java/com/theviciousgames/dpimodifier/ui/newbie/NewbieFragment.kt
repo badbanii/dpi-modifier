@@ -1,4 +1,4 @@
-package com.theviciousgames.dpimodifier.ui.newbie.newbie
+package com.theviciousgames.dpimodifier.ui.newbie
 
 import android.os.Bundle
 import android.util.Log
