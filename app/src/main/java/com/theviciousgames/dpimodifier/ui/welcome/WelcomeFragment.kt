@@ -27,7 +27,7 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
        _binding = FragmentWelcomeBinding.bind(view)
 
         binding.flatImageView.setOnClickListener {
-            findNavController().navigate(R.id.action_welcomeFragment_to_dashboardFragment)
+            findNavController().navigate(R.id.action_welcomeFragment_to_rootCheckFragment)
         }
 
 
