@@ -33,8 +33,8 @@ class SuShell {
             Log.d("debug",result?.err.toString())
         }
     }
-     fun hasRootAccess():Boolean?
+     fun hasRootAccess():Boolean
     {
-        return Shell.isAppGrantedRoot()
+        return Shell.rootAccess()
     }
 }

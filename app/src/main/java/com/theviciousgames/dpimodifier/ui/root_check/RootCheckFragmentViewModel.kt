@@ -1,4 +1,4 @@
-package com.theviciousgames.dpimodifier.ui.newbie.newbie
+package com.theviciousgames.dpimodifier.ui.root_check
 
 import androidx.lifecycle.ViewModel
 import com.theviciousgames.dpimodifier.su.SuShell
@@ -7,16 +7,16 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class NewbieFragmentViewModel @Inject constructor(
+class RootCheckFragmentViewModel @Inject constructor(
     private val suShell: SuShell,
 ) : ViewModel() {
 
     var newDpi=0
     var oldDpi=0
 
-    fun hasRootAccess()
+    fun hasRootAccess(): Boolean
     {
-        suShell.hasRootAccess()
+        return suShell.hasRootAccess()
     }
 
     fun shellTest(cmd:String)
