@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EFEEEE">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:textColor="#838383"
+        android:textSize="40sp"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/google_sans_text_bold_italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cardview_root_status"
+        />
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/cardview_root_status"
+        style="@style/Widget.Neumorph.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:neumorph_shapeType="pressed">
+
+    <RelativeLayout
+        android:id="@+id/layout_root_status"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/textview_root_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/google_sans_text_bold"
+            android:text="Your phone is not rooted."
+            android:textColor="#838383"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:src="@drawable/ic_close"
+            android:id="@+id/imageview_root_status"
+            android:layout_width="40dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/textview_root_status"
+            app:tint="#838383" />
+    </RelativeLayout>
+
+    </soup.neumorphism.NeumorphCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

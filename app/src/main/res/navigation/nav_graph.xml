@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/welcomeFragment">
+
+    <fragment
+        android:id="@+id/advancedFragment"
+        android:name="com.theviciousgames.dpimodifier.ui.advanced.AdvancedFragment"
+        android:label="AdvancedFragment" >
+        <action
+            android:id="@+id/action_advancedFragment_to_newbieFragment"
+            app:destination="@id/newbieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newbieFragment"
+        android:name="com.theviciousgames.dpimodifier.ui.newbie.NewbieFragment"
+        android:label="NewbieFragment" >
+        <action
+            android:id="@+id/action_newbieFragment_to_advancedFragment"
+            app:destination="@id/advancedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.theviciousgames.dpimodifier.ui.welcome.WelcomeFragment"
+        android:label="WelcomeFragment" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_rootCheckFragment"
+            app:destination="@id/rootCheckFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.theviciousgames.dpimodifier.ui.dashboard.DashboardFragment"
+        android:label="DashboardFragment" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_newbieFragment"
+            app:destination="@id/newbieFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_advancedFragment"
+            app:destination="@id/advancedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rootCheckFragment"
+        android:name="com.theviciousgames.dpimodifier.ui.root_check.RootCheckFragment"
+        android:label="RootCheckFragment" >
+        <action
+            android:id="@+id/action_rootCheckFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
+</navigation>

@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -13,6 +15,7 @@ android {
         targetSdk 33
         versionCode 10
         versionName "2.0.0"
+        resConfigs "en"
     }
 
     buildTypes {
@@ -27,6 +30,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 
@@ -46,4 +52,23 @@ dependencies {
 
     ///SU
     implementation 'com.github.topjohnwu.libsu:core:5.0.3'
+
+
+    ///ViewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0-alpha03'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha03'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.0-alpha03'
+
+    ///Dagger Hilt --- Dependency Injection
+    implementation 'com.google.dagger:hilt-android:2.44.2'
+    kapt 'com.google.dagger:hilt-android:2.44.2'
+    kapt 'com.google.dagger:hilt-android-compiler:2.44.2'
+
+    ///UI
+    implementation 'com.github.fornewid:neumorphism:0.3.2'
+
+    ///Coil
+    implementation("io.coil-kt:coil:2.2.2")
+
 }
