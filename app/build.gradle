@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -38,6 +39,7 @@ android {
 
 dependencies {
 
+    ///Core
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
@@ -52,8 +54,7 @@ dependencies {
 
     ///SU
     implementation 'com.github.topjohnwu.libsu:core:5.0.3'
-    implementation 'eu.chainfire:libsuperuser:1.1.0.+'
-
+    implementation 'eu.chainfire:libsuperuser:1.1.1'
 
     ///ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0-alpha03'
@@ -63,13 +64,22 @@ dependencies {
 
     ///Dagger Hilt --- Dependency Injection
     implementation 'com.google.dagger:hilt-android:2.44.2'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.2.0'
     kapt 'com.google.dagger:hilt-android:2.44.2'
     kapt 'com.google.dagger:hilt-android-compiler:2.44.2'
 
     ///UI
     implementation 'com.github.fornewid:neumorphism:0.3.2'
 
+    ///Toasts
+    implementation 'com.github.GrenderG:Toasty:1.5.2'
+
     ///Coil
-    implementation("io.coil-kt:coil:2.2.2")
+    implementation 'io.coil-kt:coil:2.2.2'
+
+    ///Sheets
+    implementation 'com.maxkeppeler.sheets:core:2.3.0'
+    implementation 'com.maxkeppeler.sheets:info:2.3.0'
+    implementation 'com.maxkeppeler.sheets:input:2.3.0'
 
 }

@@ -1,14 +1,16 @@
 package com.theviciousgames.dpimodifier.ui.newbie
 
 import androidx.lifecycle.ViewModel
+import com.fxn.stash.Stash
 import com.theviciousgames.dpimodifier.su.SuShell
+import com.theviciousgames.dpimodifier.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 
 @HiltViewModel
 class NewbieFragmentViewModel @Inject constructor(
-    private val suShell: SuShell,
+    private val suShell: SuShell
 ) : ViewModel() {
 
     var newDpi=0
@@ -19,9 +21,9 @@ class NewbieFragmentViewModel @Inject constructor(
         suShell.hasRootAccess()
     }
 
-    fun shellTest(cmd:String)
+    fun shellRun(cmd:String)
     {
-        suShell.shellTest(cmd)
+        suShell.shellRun(cmd)
     }
 
     fun updateDpiTo(dpi:Int)
@@ -32,5 +34,20 @@ class NewbieFragmentViewModel @Inject constructor(
     fun resetDpiToDefault()
     {
         suShell.resetDpiToDefault()
+    }
+
+    fun saveCurrentConfiguration(value:Int)
+    {
+        oldDpi=value
+    }
+
+    fun getShowConfirmationSetting():Boolean
+    {
+        return Stash.getBoolean(Constants.SHOW_CHANGE_CONFIRMATION,true)
+    }
+
+    fun setShowConfirmationSetting(value:Boolean)
+    {
+        Stash.put(Constants.SHOW_CHANGE_CONFIRMATION,value)
     }
 }

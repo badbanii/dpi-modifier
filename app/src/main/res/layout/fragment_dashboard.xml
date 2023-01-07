@@ -6,15 +6,26 @@
     android:background="#EFEEEE">
 
     <soup.neumorphism.NeumorphImageButton
-        android:id="@+id/flat_image_view"
+        android:id="@+id/button_settings"
         style="@style/Widget.Neumorph.ImageButton"
         android:layout_width="74dp"
         android:layout_height="74dp"
         android:scaleType="centerInside"
         android:src="@drawable/ic_menu"
-      app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
       />
+
+    <soup.neumorphism.NeumorphImageButton
+        android:id="@+id/button_reset"
+        style="@style/Widget.Neumorph.ImageButton"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_reset"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <TextView
         android:fontFamily="@font/google_sans_text"
@@ -47,15 +58,14 @@
         android:id="@+id/textview_modes_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/textview_dpi_title"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/google_sans_text"
         android:text="modes"
-        android:textSize="20sp"
         android:textColor="#838383"
-        android:layout_marginTop="36dp"
-        />
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_dpi_title" />
 
     <LinearLayout
         android:id="@+id/layout_modes_buttons"
@@ -75,6 +85,7 @@
             android:layout_height="wrap_content"
             android:drawablePadding="8dp"
             android:text="  simple  "
+            android:textColor="@color/black"
             android:fontFamily="@font/google_sans_text_bold"
             android:textAlignment="center"
             android:layout_weight="1"
@@ -84,6 +95,7 @@
             android:layout_weight="1"
             style="@style/Widget.Neumorph.Button"
             android:layout_width="wrap_content"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:fontFamily="@font/google_sans_text_bold"
             android:drawablePadding="8dp"
@@ -123,23 +135,24 @@
             >
             <TextView
                 android:id="@+id/textview_root_status"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:text="Your phone is rooted."
+                android:textAlignment="center"
                 android:fontFamily="@font/google_sans_text_bold"
                 android:layout_marginTop="36dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textColor="#838383"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:layout_toEndOf="@id/imageview_root_status"
                 />
 
             <ImageView
                 android:src="@drawable/ic_check"
                 android:id="@+id/imageview_root_status"
-                android:layout_width="40dp"
+                android:layout_width="36dp"
                 android:layout_height="32dp"
+                app:tint="#838383"
                 android:layout_marginStart="14dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
@@ -183,6 +196,7 @@
             android:fontFamily="@font/google_sans_text_bold"
             android:textAlignment="textStart"
             android:layout_weight="1"
+            android:textColor="@color/black"
             app:drawableStartCompat="@drawable/ic_add" />
 
         <soup.neumorphism.NeumorphButton

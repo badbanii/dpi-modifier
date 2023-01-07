@@ -50,9 +50,34 @@
             android:layout_centerVertical="true"
             android:layout_toStartOf="@id/textview_root_status"
             app:tint="#838383" />
+
+
     </RelativeLayout>
 
     </soup.neumorphism.NeumorphCardView>
+
+    <soup.neumorphism.NeumorphImageButton
+        android:id="@+id/button_refresh"
+        style="@style/Widget.Neumorph.ImageButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="48dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardview_root_status"
+        android:src="@drawable/ic_refresh"/>
+
+    <soup.neumorphism.NeumorphImageButton
+        android:id="@+id/button_info"
+        style="@style/Widget.Neumorph.ImageButton"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_question_mark"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
