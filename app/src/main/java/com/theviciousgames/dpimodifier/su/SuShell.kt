@@ -16,23 +16,24 @@ class SuShell {
 
     fun resetDpiToDefault()
     {
-        Shell.cmd("wm size reset").submit { result: Shell.Result? ->
+        Shell.cmd("wm density reset").submit { result: Shell.Result? ->
             Log.d("debug",
-                result?.out.toString()
+                "out "+result?.out.toString()
             )
-            Log.d("debug",result?.err.toString())
+            Log.d("debug","err "+result?.err.toString())
         }
     }
 
-    fun shellTest(cmd:String)
+    fun shellRun(cmd:String)
     {
         Shell.cmd(cmd).submit { result: Shell.Result? ->
             Log.d("debug",
-                result?.out.toString()
+                "out "+result?.out.toString()
             )
-            Log.d("debug",result?.err.toString())
+            Log.d("debug","err "+result?.err.toString())
         }
     }
+
      fun hasRootAccess():Boolean
     {
         return Shell.rootAccess()

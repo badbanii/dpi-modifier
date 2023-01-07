@@ -21,7 +21,7 @@ class RootCheckFragmentViewModel @Inject constructor(
 
     fun shellTest(cmd:String)
     {
-        suShell.shellTest(cmd)
+        suShell.shellRun(cmd)
     }
 
     fun updateDpiTo(dpi:Int)

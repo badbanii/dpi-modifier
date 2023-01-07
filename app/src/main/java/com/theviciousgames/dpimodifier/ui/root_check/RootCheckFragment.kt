@@ -2,13 +2,16 @@ package com.theviciousgames.dpimodifier.ui.root_check
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import coil.load
 import com.theviciousgames.dpimodifier.R
 import com.theviciousgames.dpimodifier.databinding.FragmentRootCheckBinding
-import com.theviciousgames.dpimodifier.getDpi
 import dagger.hilt.android.AndroidEntryPoint
+import es.dmoral.toasty.Toasty
+import eu.chainfire.libsuperuser.Shell.SU
 
 @AndroidEntryPoint
 class RootCheckFragment : Fragment(R.layout.fragment_root_check) {
@@ -20,27 +23,30 @@ class RootCheckFragment : Fragment(R.layout.fragment_root_check) {
         get() = _binding!!
 
     private fun buttonFunctions() {
-
-    }
-
-    private fun checkRoot(): Boolean {
-        return viewModel.hasRootAccess()
-    }
-
-    private fun getCurrentDpi(): Int {
-        return getDpi(requireActivity())
+        binding.buttonRefresh.setOnClickListener {
+            if (SU.available()) {
+                binding.textviewRootStatus.text = "Your device is rooted."
+                binding.imageviewRootStatus.load(R.drawable.ic_check)
+                findNavController().navigate(R.id.action_rootCheckFragment_to_dashboardFragment)
+            } else {
+                binding.textviewRootStatus.text = "Your device is not rooted."
+                binding.imageviewRootStatus.load(R.drawable.ic_close)
+                this@RootCheckFragment.context?.let { it1 -> Toasty.error(it1, "Device not rooted. If you didn't grant root privilege to the app please reinstall and grant the needed permission.", Toast.LENGTH_SHORT, true).show() }
+            }
+        }
     }
 
     private fun updateUi() {
 
-      //  viewModel.shellTest("su")
-
-        if (2==2) {
+        if (SU.available()) {
             binding.textviewRootStatus.text = "Your device is rooted."
             binding.imageviewRootStatus.load(R.drawable.ic_check)
+            findNavController().navigate(R.id.action_rootCheckFragment_to_dashboardFragment)
         } else {
             binding.textviewRootStatus.text = "Your device is not rooted."
             binding.imageviewRootStatus.load(R.drawable.ic_close)
+            this@RootCheckFragment.context?.let { it1 -> Toasty.error(it1, "Device not rooted. If you didn't grant root privilege to the app please reinstall and grant the needed permission.", Toast.LENGTH_SHORT, true).show() }
+
         }
     }
 

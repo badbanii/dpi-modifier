@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "168236005011",
+    "project_id": "dpi-changer",
+    "storage_bucket": "dpi-changer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168236005011:android:b0b9b2ddc130d7678b7f66",
+        "android_client_info": {
+          "package_name": "com.theviciousgames.dpimodifier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168236005011-hblcrui0dlrfldcnmnpmc8gb8svjf4m1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfODk2bToVGDPr8mpjFw_J1K66GbZIUqg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168236005011-hblcrui0dlrfldcnmnpmc8gb8svjf4m1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:text="The way you want it"
         android:textSize="32sp"
-        android:textColor="#F9D16B"
+        android:textColor="#838383"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
         />
 
     <soup.neumorphism.NeumorphImageButton
-        android:id="@+id/flat_image_view"
+        android:id="@+id/button_continue"
         style="@style/Widget.Neumorph.ImageButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
