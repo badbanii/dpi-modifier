@@ -23,10 +23,11 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     ///adb shell appops set foo.bar.package WRITE_SETTINGS allow
     ///Switch on "Developer Options" / "Disable Permission Monitoring" (at the end of the section)
+
     private val binding: FragmentDashboardBinding
         get() = _binding!!
 
-    private fun checkRoot(): Boolean? {
+    private fun checkRoot(): Boolean{
         return viewModel.hasRootAccess()
     }
 
