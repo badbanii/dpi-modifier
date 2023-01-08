@@ -23,4 +23,5 @@ object AppModules {
     fun provideWmUtils():WmUtils{
         return WmUtils()
     }
+
 }

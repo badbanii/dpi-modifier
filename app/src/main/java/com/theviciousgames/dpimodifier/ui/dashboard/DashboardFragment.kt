@@ -21,6 +21,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     private val viewModel: DashboardFragmentViewModel by viewModels()
     private var dialog: InputSheet = InputSheet()
 
+    ///adb shell appops set foo.bar.package WRITE_SETTINGS allow
+    ///Switch on "Developer Options" / "Disable Permission Monitoring" (at the end of the section)
     private val binding: FragmentDashboardBinding
         get() = _binding!!
 
