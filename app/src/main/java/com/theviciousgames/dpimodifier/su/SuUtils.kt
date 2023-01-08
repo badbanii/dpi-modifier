@@ -3,7 +3,7 @@ package com.theviciousgames.dpimodifier.su
 import android.util.Log
 import com.topjohnwu.superuser.Shell
 
-class SuShell {
+class SuUtils {
      fun updateDpiTo(dpi:Int)
     {
         Shell.cmd("wm density $dpi").submit { result: Shell.Result? ->

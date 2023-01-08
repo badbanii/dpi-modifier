@@ -16,6 +16,7 @@ import com.theviciousgames.dpimodifier.R
 import com.theviciousgames.dpimodifier.databinding.FragmentAdvancedBinding
 import com.theviciousgames.dpimodifier.getDpi
 import dagger.hilt.android.AndroidEntryPoint
+import eu.chainfire.libsuperuser.Shell.SU
 import kotlinx.coroutines.launch
 
 
@@ -69,8 +70,13 @@ class AdvancedFragment : Fragment(R.layout.fragment_advanced) {
     }
 
     private fun updateDpi(newDpiValue:Int) {
-
-        viewModel.updateDpiTo(newDpiValue)
+        if(SU.available())
+        {
+            viewModel.updateDpiTo(newDpiValue)
+        }
+        else{
+            viewModel.updateDpiNoRoot(newDpiValue)
+        }
     }
 
     private fun showDpiDialog(newDpiValue:Int) {

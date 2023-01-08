@@ -20,7 +20,7 @@
         android:id="@+id/cardview_root_status"
         style="@style/Widget.Neumorph.CardView"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -56,16 +56,31 @@
 
     </soup.neumorphism.NeumorphCardView>
 
+    <soup.neumorphism.NeumorphButton
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardview_root_status"
+        android:id="@+id/button_add"
+        style="@style/Widget.Neumorph.Button"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:fontFamily="@font/google_sans_text"
+        android:textAllCaps="false"
+        android:drawablePadding="8dp"
+        android:text="What can I do?"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:layout_weight="1" />
+
     <soup.neumorphism.NeumorphImageButton
         android:id="@+id/button_refresh"
         style="@style/Widget.Neumorph.ImageButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="48dp"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardview_root_status"
+        app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/ic_refresh"/>
 
     <soup.neumorphism.NeumorphImageButton

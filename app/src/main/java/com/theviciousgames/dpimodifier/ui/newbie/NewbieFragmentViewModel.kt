@@ -2,15 +2,17 @@ package com.theviciousgames.dpimodifier.ui.newbie
 
 import androidx.lifecycle.ViewModel
 import com.fxn.stash.Stash
-import com.theviciousgames.dpimodifier.su.SuShell
+import com.theviciousgames.dpimodifier.su.SuUtils
 import com.theviciousgames.dpimodifier.utils.Constants
+import com.theviciousgames.dpimodifier.wm.WmUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 
 @HiltViewModel
 class NewbieFragmentViewModel @Inject constructor(
-    private val suShell: SuShell
+    private val suShell: SuUtils,
+    private val wmUtils: WmUtils
 ) : ViewModel() {
 
     var newDpi=0
@@ -29,6 +31,11 @@ class NewbieFragmentViewModel @Inject constructor(
     fun updateDpiTo(dpi:Int)
     {
         suShell.updateDpiTo(dpi)
+    }
+
+    fun updateDpiNoRoot(dpi:Int)
+    {
+        wmUtils.setDisplayDensity(dpi)
     }
 
     fun resetDpiToDefault()

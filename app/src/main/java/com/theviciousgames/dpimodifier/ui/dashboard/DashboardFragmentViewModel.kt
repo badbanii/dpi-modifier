@@ -2,7 +2,7 @@ package com.theviciousgames.dpimodifier.ui.dashboard
 
 import androidx.lifecycle.ViewModel
 import com.fxn.stash.Stash
-import com.theviciousgames.dpimodifier.su.SuShell
+import com.theviciousgames.dpimodifier.su.SuUtils
 import com.theviciousgames.dpimodifier.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DashboardFragmentViewModel @Inject constructor(
-    private val suShell: SuShell,
+    private val suUtils: SuUtils,
 ) : ViewModel() {
 
     var newDpi=0
@@ -26,21 +26,21 @@ class DashboardFragmentViewModel @Inject constructor(
     }
     fun hasRootAccess(): Boolean
     {
-        return suShell.hasRootAccess()
+        return suUtils.hasRootAccess()
     }
 
     fun shellTest(cmd:String)
     {
-        suShell.shellRun(cmd)
+        suUtils.shellRun(cmd)
     }
 
     fun updateDpiTo(dpi:Int)
     {
-        suShell.updateDpiTo(dpi)
+        suUtils.updateDpiTo(dpi)
     }
 
     fun resetDpiToDefault()
     {
-        suShell.resetDpiToDefault()
+        suUtils.resetDpiToDefault()
     }
 }
