@@ -4,8 +4,9 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fxn.stash.Stash
-import com.theviciousgames.dpimodifier.su.SuShell
+import com.theviciousgames.dpimodifier.su.SuUtils
 import com.theviciousgames.dpimodifier.utils.Constants
+import com.theviciousgames.dpimodifier.wm.WmUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,7 +17,8 @@ import kotlin.concurrent.schedule
 
 @HiltViewModel
 class AdvancedFragmentViewModel @Inject constructor(
-    private val suShell: SuShell
+    private val suUtils: SuUtils,
+    private val wmUtils: WmUtils
 ): ViewModel() {
 
     var newDpi=290
@@ -28,7 +30,10 @@ class AdvancedFragmentViewModel @Inject constructor(
     private fun triggerResetDpi(value: Boolean) = viewModelScope.launch {
         _resetDPI.value = value
     }
-
+    fun updateDpiNoRoot(dpi:Int)
+    {
+        wmUtils.setDisplayDensity(dpi)
+    }
     fun resetDpiTriggerFlow()
     {
         _resetDPI.value=false
@@ -46,22 +51,22 @@ class AdvancedFragmentViewModel @Inject constructor(
 
     fun hasRootAccess()
     {
-        suShell.hasRootAccess()
+        suUtils.hasRootAccess()
     }
 
     fun shellTest(cmd:String)
     {
-        suShell.shellRun(cmd)
+        suUtils.shellRun(cmd)
     }
 
     fun updateDpiTo(dpi:Int)
     {
-        suShell.updateDpiTo(dpi)
+        suUtils.updateDpiTo(dpi)
     }
 
     fun resetDpiToDefault()
     {
-        suShell.resetDpiToDefault()
+        suUtils.resetDpiToDefault()
     }
 
     fun getShowConfirmationSetting():Boolean

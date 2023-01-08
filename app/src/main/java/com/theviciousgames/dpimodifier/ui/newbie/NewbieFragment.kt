@@ -12,6 +12,7 @@ import com.theviciousgames.dpimodifier.databinding.FragmentNewbieBinding
 import com.theviciousgames.dpimodifier.getDpi
 import com.theviciousgames.dpimodifier.utils.Operation
 import dagger.hilt.android.AndroidEntryPoint
+import eu.chainfire.libsuperuser.Shell.SU
 
 
 @AndroidEntryPoint
@@ -47,14 +48,25 @@ class NewbieFragment : Fragment(R.layout.fragment_newbie) {
     }
 
     private fun increaseDpiButtonPressed() {
-        showDpiDialog(Operation.INCREASE)
+      showDpiDialog(Operation.INCREASE)
     }
 
     private fun updateDpi(operation: Operation) {
-        if (operation == Operation.INCREASE) {
-            viewModel.updateDpiTo(getDpi(requireActivity()) + 5)
-        } else {
-            viewModel.updateDpiTo(getDpi(requireActivity()) - 5)
+        if(SU.available())
+        {
+            if (operation == Operation.INCREASE) {
+                viewModel.updateDpiTo(getDpi(requireActivity()) + 5)
+            } else {
+                viewModel.updateDpiTo(getDpi(requireActivity()) - 5)
+            }
+        }
+        else
+        {
+            if (operation == Operation.INCREASE) {
+                viewModel.updateDpiNoRoot(getDpi(requireActivity()) + 5)
+            } else {
+                viewModel.updateDpiNoRoot(getDpi(requireActivity()) - 5)
+            }
         }
     }
 
