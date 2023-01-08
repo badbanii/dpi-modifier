@@ -74,16 +74,6 @@
         android:layout_weight="1" />
 
     <soup.neumorphism.NeumorphImageButton
-        android:id="@+id/button_refresh"
-        style="@style/Widget.Neumorph.ImageButton"
-        android:layout_width="74dp"
-        android:layout_height="74dp"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_refresh"/>
-
-    <soup.neumorphism.NeumorphImageButton
         android:id="@+id/button_info"
         style="@style/Widget.Neumorph.ImageButton"
         android:layout_width="74dp"
