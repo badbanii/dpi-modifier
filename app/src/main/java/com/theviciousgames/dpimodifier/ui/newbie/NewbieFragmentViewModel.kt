@@ -30,7 +30,7 @@ class NewbieFragmentViewModel @Inject constructor(
 
     fun updateDpiTo(dpi:Int)
     {
-        suShell.updateDpiTo(dpi)
+        suShell.setDisplayDensity(dpi)
     }
 
     fun updateDpiNoRoot(dpi:Int)
@@ -40,7 +40,7 @@ class NewbieFragmentViewModel @Inject constructor(
 
     fun resetDpiToDefault()
     {
-        suShell.resetDpiToDefault()
+        suShell.resetDisplayDensity()
     }
 
     fun saveCurrentConfiguration(value:Int)

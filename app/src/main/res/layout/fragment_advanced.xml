@@ -88,7 +88,7 @@
         android:layout_width="74dp"
         android:layout_height="74dp"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_menu"
+        android:src="@drawable/ic_settings"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />

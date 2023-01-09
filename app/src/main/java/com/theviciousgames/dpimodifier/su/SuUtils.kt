@@ -4,7 +4,7 @@ import android.util.Log
 import com.topjohnwu.superuser.Shell
 
 class SuUtils {
-     fun updateDpiTo(dpi:Int)
+     fun setDisplayDensity(dpi:Int)
     {
         Shell.cmd("wm density $dpi").submit { result: Shell.Result? ->
             Log.d("debug",
@@ -14,7 +14,7 @@ class SuUtils {
         }
     }
 
-    fun resetDpiToDefault()
+    fun resetDisplayDensity()
     {
         Shell.cmd("wm density reset").submit { result: Shell.Result? ->
             Log.d("debug",

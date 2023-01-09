@@ -33,11 +33,11 @@ class RootCheckFragmentViewModel @Inject constructor(
 
     fun updateDpiTo(dpi:Int)
     {
-        suUtils.updateDpiTo(dpi)
+        suUtils.setDisplayDensity(dpi)
     }
 
     fun resetDpiToDefault()
     {
-        suUtils.resetDpiToDefault()
+        suUtils.resetDisplayDensity()
     }
 }
