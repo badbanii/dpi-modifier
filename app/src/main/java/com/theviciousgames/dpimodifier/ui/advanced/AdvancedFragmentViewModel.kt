@@ -61,12 +61,12 @@ class AdvancedFragmentViewModel @Inject constructor(
 
     fun updateDpiTo(dpi:Int)
     {
-        suUtils.updateDpiTo(dpi)
+        suUtils.setDisplayDensity(dpi)
     }
 
     fun resetDpiToDefault()
     {
-        suUtils.resetDpiToDefault()
+        suUtils.resetDisplayDensity()
     }
 
     fun getShowConfirmationSetting():Boolean

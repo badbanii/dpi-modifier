@@ -6,6 +6,7 @@ import com.theviciousgames.dpimodifier.su.SuUtils
 import com.theviciousgames.dpimodifier.utils.Constants
 import com.theviciousgames.dpimodifier.wm.WmUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
+import eu.chainfire.libsuperuser.Shell.SU
 import javax.inject.Inject
 
 
@@ -18,6 +19,17 @@ class DashboardFragmentViewModel @Inject constructor(
     var newDpi=0
     var oldDpi=0
 
+    fun setDisplayDensity(value:Int)
+    {
+        if(getRootAccess())
+        {
+            suUtils.setDisplayDensity(value)
+        }
+        else
+        {
+            wmUtils.setDisplayDensity(value)
+        }
+    }
     fun getShowConfirmationSetting():Boolean
     {
         return Stash.getBoolean(Constants.SHOW_CHANGE_CONFIRMATION,true)
@@ -26,28 +38,25 @@ class DashboardFragmentViewModel @Inject constructor(
     {
         Stash.put(Constants.SHOW_CHANGE_CONFIRMATION,value)
     }
-    fun hasRootAccess(): Boolean
+    fun getRootAccess(): Boolean
     {
-        return suUtils.hasRootAccess()
+        return SU.available()
     }
-
-    fun shellTest(cmd:String)
+    fun shellRun(cmd:String)
     {
         suUtils.shellRun(cmd)
     }
 
-    fun updateDpiTo(dpi:Int)
+    fun resetDisplayDensity()
     {
-        suUtils.updateDpiTo(dpi)
-    }
+        if(getRootAccess())
+        {
+            suUtils.resetDisplayDensity()
+        }
+        else
+        {
+            wmUtils.resetDisplayDensity()
+        }
 
-    fun resetDpiToDefault()
-    {
-        suUtils.resetDpiToDefault()
-    }
-
-    fun resetDpiToDefaultNoRoot()
-    {
-        wmUtils.resetDisplayDensity()
     }
 }

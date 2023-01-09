@@ -12,8 +12,6 @@ import com.theviciousgames.dpimodifier.R
 import com.theviciousgames.dpimodifier.databinding.FragmentDashboardBinding
 import com.theviciousgames.dpimodifier.getDpi
 import dagger.hilt.android.AndroidEntryPoint
-import eu.chainfire.libsuperuser.Shell
-import eu.chainfire.libsuperuser.Shell.SU
 
 @AndroidEntryPoint
 class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
@@ -27,10 +25,6 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     private val binding: FragmentDashboardBinding
         get() = _binding!!
-
-    private fun checkRoot(): Boolean{
-        return viewModel.hasRootAccess()
-    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -49,24 +43,19 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         binding.buttonSettings.setOnClickListener {
             showSettingsDialog()
         }
-
+        binding.buttonMenu.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_menuFragment)
+        }
         binding.buttonSimple.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_newbieFragment)
         }
-
         binding.buttonAdvanced.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_advancedFragment)
         }
         binding.buttonReset.setOnClickListener {
-            if(SU.available())
-            {
-                viewModel.resetDpiToDefault()
-            }
-            else
-            {
-                viewModel.resetDpiToDefaultNoRoot()
-            }
+           viewModel.resetDisplayDensity()
         }
+
     }
     private fun showSettingsDialog() {
         dialog = InputSheet().build(requireActivity()) {
@@ -94,7 +83,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     {
         binding.textviewDpiVal.text = getCurrentDpi().toString()
 
-        if(Shell.SU.available())
+        if(viewModel.getRootAccess())
         {
             binding.textviewRootStatus.text="Your device is rooted."
             binding.imageviewRootStatus.load(R.drawable.ic_check)
