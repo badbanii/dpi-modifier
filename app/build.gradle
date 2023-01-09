@@ -82,4 +82,7 @@ dependencies {
     implementation 'com.maxkeppeler.sheets:info:2.3.0'
     implementation 'com.maxkeppeler.sheets:input:2.3.0'
 
+    ///Rate
+    implementation 'com.suddenh4x.ratingdialog:awesome-app-rating:2.5.0'
+
 }
