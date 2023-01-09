@@ -1,6 +1,7 @@
 package com.theviciousgames.dpimodifier.di
 
 import com.theviciousgames.dpimodifier.su.SuUtils
+import com.theviciousgames.dpimodifier.utils.PermissionChecker
 import com.theviciousgames.dpimodifier.wm.WmUtils
 import dagger.Module
 import dagger.Provides
@@ -24,4 +25,10 @@ object AppModules {
         return WmUtils()
     }
 
+    @Provides
+    @Singleton
+    fun providePermissionChecker():PermissionChecker
+    {
+        return PermissionChecker()
+    }
 }

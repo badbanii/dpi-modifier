@@ -37,4 +37,19 @@ class WmUtils {
                 .invoke(wmService, Display.DEFAULT_DISPLAY, density, -3)
         } catch (_: Exception) {}
     }
+
+    @SuppressLint("PrivateApi")
+    fun resetDisplayDensity() {
+
+        val wmService = getWindowManagerService() ?: return
+
+        try {
+            Class.forName(CLASS_NAME_WINDOW_MANAGER)
+                .getMethod("clearForcedDisplayDensityForUser", Int::class.javaPrimitiveType, Int::class.javaPrimitiveType)
+                .invoke(wmService, Display.DEFAULT_DISPLAY, -3)
+        } catch (_: Exception) {}
+    }
+
+
+
 }

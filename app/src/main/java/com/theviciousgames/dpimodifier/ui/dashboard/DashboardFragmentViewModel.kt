@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.fxn.stash.Stash
 import com.theviciousgames.dpimodifier.su.SuUtils
 import com.theviciousgames.dpimodifier.utils.Constants
+import com.theviciousgames.dpimodifier.wm.WmUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -11,6 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DashboardFragmentViewModel @Inject constructor(
     private val suUtils: SuUtils,
+    private val wmUtils: WmUtils
 ) : ViewModel() {
 
     var newDpi=0
@@ -42,5 +44,10 @@ class DashboardFragmentViewModel @Inject constructor(
     fun resetDpiToDefault()
     {
         suUtils.resetDpiToDefault()
+    }
+
+    fun resetDpiToDefaultNoRoot()
+    {
+        wmUtils.resetDisplayDensity()
     }
 }
