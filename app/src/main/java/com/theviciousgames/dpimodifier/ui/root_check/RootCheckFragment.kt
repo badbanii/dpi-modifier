@@ -50,7 +50,7 @@ class RootCheckFragment : Fragment(R.layout.fragment_root_check) {
             if(viewModel.isWriteSecureSettingsPermissionGranted(requireContext()))
             {
                 deviceStatus=DeviceStatus.GRANTED_SECURE_PERMISSION
-                //findNavController().navigate(R.id.action_rootCheckFragment_to_dashboardFragment)
+                findNavController().navigate(R.id.action_rootCheckFragment_to_dashboardFragment)
             }
             else
             {

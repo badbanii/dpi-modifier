@@ -13,6 +13,7 @@ import com.theviciousgames.dpimodifier.databinding.FragmentDashboardBinding
 import com.theviciousgames.dpimodifier.getDpi
 import dagger.hilt.android.AndroidEntryPoint
 import eu.chainfire.libsuperuser.Shell
+import eu.chainfire.libsuperuser.Shell.SU
 
 @AndroidEntryPoint
 class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
@@ -57,7 +58,14 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             findNavController().navigate(R.id.action_dashboardFragment_to_advancedFragment)
         }
         binding.buttonReset.setOnClickListener {
-            viewModel.resetDpiToDefault()
+            if(SU.available())
+            {
+                viewModel.resetDpiToDefault()
+            }
+            else
+            {
+                viewModel.resetDpiToDefaultNoRoot()
+            }
         }
     }
     private fun showSettingsDialog() {
