@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="#EFEEEE">
+
+    <soup.neumorphism.NeumorphButton
+        android:id="@+id/button"
+        style="@style/Widget.Neumorph.Button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_remove"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="8dp"
+        android:text="gaming      350 dpi"
+        android:fontFamily="@font/google_sans_text_bold"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        app:drawableStartCompat="@drawable/ic_preset" />
+
+    <soup.neumorphism.NeumorphButton
+        android:id="@+id/button_remove"
+        style="@style/Widget.Neumorph.Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:drawablePadding="0dp"
+        android:textColor="@color/black"
+        app:drawableStartCompat="@drawable/ic_remove" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

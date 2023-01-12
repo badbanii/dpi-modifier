@@ -23,20 +23,30 @@ class NewbieFragment : Fragment(R.layout.fragment_newbie) {
         get() = _binding!!
 
     private fun buttonFunctions() {
-        binding.buttonBack.setOnClickListener {
-            findNavController().navigateUp()
-        }
-        binding.buttonAdd.setOnClickListener {
-            increaseDpiButtonPressed()
-        }
-        binding.buttonSubstract.setOnClickListener {
-            decreaseDpiButtonPressed()
-        }
-        binding.buttonSettings.setOnClickListener {
-            showSettingsDialog()
+        with(binding)
+        {
+            buttonBack.setOnClickListener {
+                findNavController().navigateUp()
+            }
+            buttonAdd.setOnClickListener {
+                increaseDpiButtonPressed()
+            }
+            buttonSubstract.setOnClickListener {
+                decreaseDpiButtonPressed()
+            }
+            buttonSettings.setOnClickListener {
+                showSettingsDialog()
+            }
+            buttonReset.setOnClickListener {
+                resetDisplayDensity()
+            }
         }
     }
 
+    private fun resetDisplayDensity()
+    {
+        viewModel.resetDisplayDensity()
+    }
     private fun decreaseDpiButtonPressed() {
         showDpiDialog(Operation.DECREASE)
     }

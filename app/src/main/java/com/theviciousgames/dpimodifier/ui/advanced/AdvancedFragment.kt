@@ -29,19 +29,30 @@ class AdvancedFragment : Fragment(R.layout.fragment_advanced) {
         get() = _binding!!
 
     private fun buttonFunctions() {
-        binding.buttonBack.setOnClickListener {
-            findNavController().navigateUp()
-        }
-        binding.buttonConfirm.setOnClickListener {
-            showDpiDialog(binding.edittextDpiValue.text.toString().toInt())
-        }
+        with(binding)
+        {
+            buttonBack.setOnClickListener {
+                findNavController().navigateUp()
+            }
+           buttonConfirm.setOnClickListener {
+                showDpiDialog(binding.edittextDpiValue.text.toString().toInt())
+            }
 
-        binding.buttonSettings.setOnClickListener {
-            showSettingsDialog()
+            buttonSettings.setOnClickListener {
+                showSettingsDialog()
+            }
+            buttonTest.setOnClickListener {
+                showTestDialog(binding.edittextDpiValue.text.toString().toInt())
+            }
+            buttonReset.setOnClickListener {
+                resetDisplayDensity()
+            }
         }
-        binding.buttonTest.setOnClickListener {
-            showTestDialog(binding.edittextDpiValue.text.toString().toInt())
-        }
+    }
+
+    private fun resetDisplayDensity()
+    {
+        viewModel.resetDisplayDensity()
     }
 
     private fun showSettingsDialog() {

@@ -6,12 +6,14 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
 import com.maxkeppeler.sheets.input.type.InputEditText
 import com.theviciousgames.dpimodifier.R
 import com.theviciousgames.dpimodifier.databinding.FragmentDashboardBinding
+import com.theviciousgames.dpimodifier.model.Preset
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,6 +22,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     private var _binding: FragmentDashboardBinding? = null
     private val viewModel: DashboardFragmentViewModel by viewModels()
     private var dialog: InputSheet = InputSheet()
+    private var presetAdapter: PresetAdapter? = null
+    private var presetList= mutableListOf<Preset>()
 
     ///adb shell appops set foo.bar.package WRITE_SETTINGS allow
     ///Switch on "Developer Options" / "Disable Permission Monitoring" (at the end of the section)
@@ -37,8 +41,16 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         _binding = FragmentDashboardBinding.bind(view)
         updateUi()
         buttonFunctions()
+        setupRecyclerView()
+        addListToRecyclerView()
+        handleAddPresetButton()
     }
 
+    private fun addListToRecyclerView()
+    {
+        presetList=getPresetList().toMutableList()
+        presetAdapter?.differ?.submitList(presetList)
+    }
     private fun buttonFunctions()
     {
         binding.buttonSettings.setOnClickListener {
@@ -57,9 +69,9 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
            viewModel.resetDisplayDensity()
         }
         binding.buttonAdd.setOnClickListener {
+            presetList.add(Preset("123",300))
             showPresetsDialog()
         }
-
     }
     private fun showSettingsDialog() {
         dialog = InputSheet().build(requireActivity()) {
@@ -126,5 +138,31 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     private fun getDisplayDensity(): Int {
         return viewModel.getDisplayDensity(requireActivity())
+    }
+
+    private fun getPresetList():List<Preset>
+    {
+       return viewModel.getPresetList()
+    }
+
+    private fun setPresetList(list:List<Preset>){
+        viewModel.setPresetList(list)
+    }
+
+    private fun setupRecyclerView() {
+        presetAdapter = PresetAdapter(PresetAdapter.OnClickListener {})
+
+        binding.recyclerview.apply {
+            adapter = presetAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+    }
+
+    private fun handleAddPresetButton()
+    {
+        if(presetList.size>1)
+        {
+            binding.buttonAdd.visibility=View.GONE
+        }
     }
 }

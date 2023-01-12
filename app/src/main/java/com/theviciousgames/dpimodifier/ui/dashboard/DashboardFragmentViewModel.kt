@@ -3,6 +3,7 @@ package com.theviciousgames.dpimodifier.ui.dashboard
 import android.app.Activity
 import androidx.lifecycle.ViewModel
 import com.fxn.stash.Stash
+import com.theviciousgames.dpimodifier.model.Preset
 import com.theviciousgames.dpimodifier.su.SuUtils
 import com.theviciousgames.dpimodifier.utils.Constants
 import com.theviciousgames.dpimodifier.wm.WmUtils
@@ -57,5 +58,14 @@ class DashboardFragmentViewModel @Inject constructor(
         {
             wmUtils.resetDisplayDensity()
         }
+    }
+
+    fun getPresetList():List<Preset>
+    {
+       return Stash.getArrayList<Preset>(Constants.PRESET_LIST_KEY, Preset::class.java)
+    }
+
+    fun setPresetList(list:List<Preset>){
+        Stash.put(Constants.PRESET_LIST_KEY,list)
     }
 }
