@@ -110,7 +110,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     private fun updateUi()
     {
-        binding.textviewDpiVal.text = getCurrentDpi().toString()
+        binding.textviewDpiVal.text = getDisplayDensity().toString()
 
         if(viewModel.getRootAccess())
         {
@@ -124,7 +124,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         }
     }
 
-    private fun getCurrentDpi(): Int {
-        return viewModel.getDpi(requireActivity())
+    private fun getDisplayDensity(): Int {
+        return viewModel.getDisplayDensity(requireActivity())
     }
 }

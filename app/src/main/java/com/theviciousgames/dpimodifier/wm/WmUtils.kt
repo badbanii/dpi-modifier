@@ -52,7 +52,7 @@ class WmUtils {
         } catch (_: Exception) {}
     }
 
-    fun getDpi(activity: Activity):Int
+    fun getDisplayDensity(activity: Activity):Int
     {
         val dm = DisplayMetrics()
         activity.windowManager.defaultDisplay.getRealMetrics(dm)

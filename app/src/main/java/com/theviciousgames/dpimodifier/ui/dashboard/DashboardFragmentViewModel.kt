@@ -16,11 +16,9 @@ class DashboardFragmentViewModel @Inject constructor(
     private val wmUtils: WmUtils
 ) : ViewModel() {
 
-    var newDpi=0
-    var oldDpi=0
-    fun getDpi(activity: Activity):Int
+    fun getDisplayDensity(activity: Activity):Int
     {
-        return wmUtils.getDpi(activity)
+        return wmUtils.getDisplayDensity(activity)
     }
 
     fun setDisplayDensity(value:Int)

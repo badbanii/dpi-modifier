@@ -6,19 +6,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.suddenh4x.ratingdialog.AppRating
 import com.theviciousgames.dpimodifier.R
 import com.theviciousgames.dpimodifier.databinding.FragmentMenuBinding
-import com.theviciousgames.dpimodifier.ui.newbie.NewbieFragmentViewModel
 import kotlin.system.exitProcess
 
 
 class MenuFragment : Fragment(R.layout.fragment_menu) {
 
     private var _binding: FragmentMenuBinding? = null
-    private val viewModel: NewbieFragmentViewModel by viewModels()
 
     private val binding: FragmentMenuBinding
         get() = _binding!!
@@ -32,7 +29,6 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         super.onViewCreated(view, savedInstanceState)
        _binding = FragmentMenuBinding.bind(view)
         buttonFunctions()
-
     }
 
     private fun buttonFunctions()

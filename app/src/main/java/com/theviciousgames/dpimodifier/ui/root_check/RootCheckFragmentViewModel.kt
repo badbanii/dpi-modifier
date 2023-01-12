@@ -18,8 +18,7 @@ class RootCheckFragmentViewModel @Inject constructor(
         return permissionChecker.isPermissionsGranted(context, android.Manifest.permission.WRITE_SECURE_SETTINGS)
     }
 
-    private fun getRootAccess(): Boolean
-    {
+    fun getRootAccess(): Boolean {
         return suUtils.getRootAccess()
     }
 }

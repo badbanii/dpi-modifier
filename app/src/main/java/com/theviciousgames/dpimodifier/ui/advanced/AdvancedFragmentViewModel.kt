@@ -32,7 +32,7 @@ class AdvancedFragmentViewModel @Inject constructor(
     }
     fun getDpi(activity: Activity):Int
     {
-        return wmUtils.getDpi(activity)
+        return wmUtils.getDisplayDensity(activity)
     }
     private fun getRootAccess(): Boolean
     {

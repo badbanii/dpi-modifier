@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/firstOnBoardingFragment">
 
     <fragment
         android:id="@+id/advancedFragment"
@@ -54,4 +54,31 @@
         android:id="@+id/menuFragment"
         android:name="com.theviciousgames.dpimodifier.ui.menu.MenuFragment"
         android:label="MenuFragment" />
+    <fragment
+        android:id="@+id/firstOnBoardingFragment"
+        android:name="com.theviciousgames.dpimodifier.ui.welcome.FirstOnBoardingFragment"
+        android:label="FirstOnBoardingFragment" >
+        <action
+            android:id="@+id/action_firstOnBoardingFragment_to_secondOnBoardingFragment"
+            app:destination="@id/secondOnBoardingFragment" />
+        <action
+            android:id="@+id/action_firstOnBoardingFragment_to_rootCheckFragment"
+            app:destination="@id/rootCheckFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdOnBoardingFragment"
+        android:name="com.theviciousgames.dpimodifier.ui.welcome.ThirdOnBoardingFragment"
+        android:label="ThirdOnBoardingFragment" >
+        <action
+            android:id="@+id/action_thirdOnBoardingFragment_to_rootCheckFragment"
+            app:destination="@id/rootCheckFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondOnBoardingFragment"
+        android:name="com.theviciousgames.dpimodifier.ui.welcome.SecondOnBoardingFragment"
+        android:label="SecondOnBoardingFragment" >
+        <action
+            android:id="@+id/action_secondOnBoardingFragment_to_thirdOnBoardingFragment"
+            app:destination="@id/thirdOnBoardingFragment" />
+    </fragment>
 </navigation>

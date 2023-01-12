@@ -41,10 +41,6 @@ class NewbieFragment : Fragment(R.layout.fragment_newbie) {
         showDpiDialog(Operation.DECREASE)
     }
 
-    private fun getCurrentDpi(): Int {
-        return viewModel.getDpi(requireActivity())
-    }
-
     private fun increaseDpiButtonPressed() {
       showDpiDialog(Operation.INCREASE)
     }
@@ -54,10 +50,10 @@ class NewbieFragment : Fragment(R.layout.fragment_newbie) {
     }
     private fun getDisplayDensity():Int
     {
-        return viewModel.getDpi(requireActivity())
+        return viewModel.getDisplayDensity(requireActivity())
     }
 
-    private fun updateDpi(operation: Operation) {
+    private fun setDisplayDensity(operation: Operation) {
         setDisplayDensity(getDisplayDensity(),operation)
     }
 
@@ -103,17 +99,17 @@ class NewbieFragment : Fragment(R.layout.fragment_newbie) {
                     if (check) {
                         viewModel.setShowConfirmationSetting(false)
                     }
-                    updateDpi(operation)
+                    setDisplayDensity(operation)
                 }
             }
             dialog.show()
         } else {
-            updateDpi(operation)
+            setDisplayDensity(operation)
         }
     }
 
     private fun updateUi() {
-        binding.textviewDpiVal.text = getCurrentDpi().toString()
+        binding.textviewDpiVal.text = getDisplayDensity().toString()
     }
 
     override fun onDestroy() {
