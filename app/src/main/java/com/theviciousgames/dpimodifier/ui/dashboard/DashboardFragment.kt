@@ -69,7 +69,6 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
            viewModel.resetDisplayDensity()
         }
         binding.buttonAdd.setOnClickListener {
-            presetList.add(Preset("123",300))
             showPresetsDialog()
         }
     }
@@ -91,10 +90,12 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             onPositive { result ->
                 val check = result.getBoolean("never_show_checkbox")
                 viewModel.setShowConfirmationSetting(!check)
+
             }
         }
         dialog.show()
     }
+
 
     private fun showPresetsDialog() {
 
@@ -106,19 +107,28 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
             with(InputEditText("preset_name") {
                 label("Preset's name")
+                required(true)
             })
             with(InputEditText("preset_dpi") {
                 label("Preset's DPI")
                 inputType(InputType.TYPE_CLASS_NUMBER)
+                required(true)
             })
             onNegative {}
             onPositive { result ->
-                val check = result.getBoolean("never_show_checkbox")
-                viewModel.setShowConfirmationSetting(!check)
+                val name = result.getString("preset_name")
+                val dpi = result.getString("preset_dpi")
+
+                name?.let { dpi?.let { it1 -> Preset(it, it1.toInt()) } }?.let { presetList.add(it) }
+                setPresetList(presetList)
+                setupRecyclerView()
+                addListToRecyclerView()
+                handleAddPresetButton()
             }
         }
         dialog.show()
     }
+
 
     private fun updateUi()
     {
@@ -145,12 +155,24 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
        return viewModel.getPresetList()
     }
 
+    private fun setDisplayDensity(value:Int)
+    {
+        viewModel.setDisplayDensity(value)
+    }
     private fun setPresetList(list:List<Preset>){
         viewModel.setPresetList(list)
     }
 
     private fun setupRecyclerView() {
-        presetAdapter = PresetAdapter(PresetAdapter.OnClickListener {})
+        presetAdapter = PresetAdapter(PresetAdapter.OnClickListenerDelete {
+            presetList.remove(it)
+            setPresetList(presetList)
+            setupRecyclerView()
+            addListToRecyclerView()
+            handleAddPresetButton()
+        },PresetAdapter.OnClickListenerSet{
+            setDisplayDensity(it.value)
+        })
 
         binding.recyclerview.apply {
             adapter = presetAdapter
@@ -163,6 +185,9 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         if(presetList.size>1)
         {
             binding.buttonAdd.visibility=View.GONE
+        }
+        else {
+            binding.buttonAdd.visibility=View.VISIBLE
         }
     }
 }
