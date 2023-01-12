@@ -1,9 +1,11 @@
 package com.theviciousgames.dpimodifier.ui.newbie
 
+import android.app.Activity
 import androidx.lifecycle.ViewModel
 import com.fxn.stash.Stash
 import com.theviciousgames.dpimodifier.su.SuUtils
 import com.theviciousgames.dpimodifier.utils.Constants
+import com.theviciousgames.dpimodifier.utils.Operation
 import com.theviciousgames.dpimodifier.wm.WmUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -11,36 +13,54 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewbieFragmentViewModel @Inject constructor(
-    private val suShell: SuUtils,
+    private val suUtils: SuUtils,
     private val wmUtils: WmUtils
 ) : ViewModel() {
 
     var newDpi=0
     var oldDpi=0
 
-    fun hasRootAccess()
+    private fun getRootAccess(): Boolean
     {
-        suShell.hasRootAccess()
+        return suUtils.getRootAccess()
     }
 
-    fun shellRun(cmd:String)
+    fun getDpi(activity: Activity):Int
     {
-        suShell.shellRun(cmd)
+        return wmUtils.getDpi(activity)
     }
 
-    fun updateDpiTo(dpi:Int)
+    fun setDisplayDensity(value:Int,operation: Operation)
     {
-        suShell.setDisplayDensity(dpi)
+        if(getRootAccess())
+        {
+            if(operation==Operation.INCREASE){
+                suUtils.setDisplayDensity(value+5)
+            }
+            else{
+                suUtils.setDisplayDensity(value-5)
+            }
+        }
+        else
+        {
+            if(operation==Operation.INCREASE)
+            {
+                wmUtils.setDisplayDensity(value+5)
+            }
+            else{
+                wmUtils.setDisplayDensity(value-5)
+            }
+        }
     }
 
-    fun updateDpiNoRoot(dpi:Int)
+    fun resetDisplayDensity()
     {
-        wmUtils.setDisplayDensity(dpi)
-    }
-
-    fun resetDpiToDefault()
-    {
-        suShell.resetDisplayDensity()
+        if(getRootAccess())
+        {
+            suUtils.resetDisplayDensity()
+        }else{
+            wmUtils.resetDisplayDensity()
+        }
     }
 
     fun saveCurrentConfiguration(value:Int)

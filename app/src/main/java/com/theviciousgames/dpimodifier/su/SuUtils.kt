@@ -2,6 +2,7 @@ package com.theviciousgames.dpimodifier.su
 
 import android.util.Log
 import com.topjohnwu.superuser.Shell
+import eu.chainfire.libsuperuser.Shell.SU
 
 class SuUtils {
      fun setDisplayDensity(dpi:Int)
@@ -10,7 +11,7 @@ class SuUtils {
             Log.d("debug",
                 result?.out.toString()
             )
-            Log.d("debug",result?.err.toString())
+            Log.d("debug","error: "+result?.err.toString())
         }
     }
 
@@ -18,9 +19,9 @@ class SuUtils {
     {
         Shell.cmd("wm density reset").submit { result: Shell.Result? ->
             Log.d("debug",
-                "out "+result?.out.toString()
+                "result: "+result?.out.toString()
             )
-            Log.d("debug","err "+result?.err.toString())
+            Log.d("debug","error: "+result?.err.toString())
         }
     }
 
@@ -30,12 +31,12 @@ class SuUtils {
             Log.d("debug",
                 "out "+result?.out.toString()
             )
-            Log.d("debug","err "+result?.err.toString())
+            Log.d("debug","error: "+result?.err.toString())
         }
     }
 
-     fun hasRootAccess():Boolean
+     fun getRootAccess():Boolean
     {
-        return Shell.rootAccess()
+        return SU.available()
     }
 }

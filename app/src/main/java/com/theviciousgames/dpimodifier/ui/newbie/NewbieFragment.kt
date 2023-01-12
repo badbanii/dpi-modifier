@@ -9,10 +9,8 @@ import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
 import com.theviciousgames.dpimodifier.R
 import com.theviciousgames.dpimodifier.databinding.FragmentNewbieBinding
-import com.theviciousgames.dpimodifier.getDpi
 import com.theviciousgames.dpimodifier.utils.Operation
 import dagger.hilt.android.AndroidEntryPoint
-import eu.chainfire.libsuperuser.Shell.SU
 
 
 @AndroidEntryPoint
@@ -44,30 +42,23 @@ class NewbieFragment : Fragment(R.layout.fragment_newbie) {
     }
 
     private fun getCurrentDpi(): Int {
-        return getDpi(requireActivity())
+        return viewModel.getDpi(requireActivity())
     }
 
     private fun increaseDpiButtonPressed() {
       showDpiDialog(Operation.INCREASE)
     }
 
+    private fun setDisplayDensity(newDpiValue: Int,operation: Operation) {
+        viewModel.setDisplayDensity(newDpiValue,operation)
+    }
+    private fun getDisplayDensity():Int
+    {
+        return viewModel.getDpi(requireActivity())
+    }
+
     private fun updateDpi(operation: Operation) {
-        if(SU.available())
-        {
-            if (operation == Operation.INCREASE) {
-                viewModel.updateDpiTo(getDpi(requireActivity()) + 5)
-            } else {
-                viewModel.updateDpiTo(getDpi(requireActivity()) - 5)
-            }
-        }
-        else
-        {
-            if (operation == Operation.INCREASE) {
-                viewModel.updateDpiNoRoot(getDpi(requireActivity()) + 5)
-            } else {
-                viewModel.updateDpiNoRoot(getDpi(requireActivity()) - 5)
-            }
-        }
+        setDisplayDensity(getDisplayDensity(),operation)
     }
 
     private fun showSettingsDialog() {

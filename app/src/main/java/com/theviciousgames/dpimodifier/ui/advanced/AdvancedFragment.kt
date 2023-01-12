@@ -14,9 +14,7 @@ import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
 import com.theviciousgames.dpimodifier.R
 import com.theviciousgames.dpimodifier.databinding.FragmentAdvancedBinding
-import com.theviciousgames.dpimodifier.getDpi
 import dagger.hilt.android.AndroidEntryPoint
-import eu.chainfire.libsuperuser.Shell.SU
 import kotlinx.coroutines.launch
 
 
@@ -42,7 +40,7 @@ class AdvancedFragment : Fragment(R.layout.fragment_advanced) {
             showSettingsDialog()
         }
         binding.buttonTest.setOnClickListener {
-             showTestDialog(binding.edittextDpiValue.text.toString().toInt())
+            showTestDialog(binding.edittextDpiValue.text.toString().toInt())
         }
     }
 
@@ -55,8 +53,7 @@ class AdvancedFragment : Fragment(R.layout.fragment_advanced) {
             with(InputCheckBox("never_show_checkbox") {
                 label("Hide confirmation when changing DPI?")
                 text("Yes")
-                if (!viewModel.getShowConfirmationSetting())
-                {
+                if (!viewModel.getShowConfirmationSetting()) {
                     defaultValue(true)
                 }
             })
@@ -69,17 +66,11 @@ class AdvancedFragment : Fragment(R.layout.fragment_advanced) {
         dialog.show()
     }
 
-    private fun updateDpi(newDpiValue:Int) {
-        if(SU.available())
-        {
-            viewModel.updateDpiTo(newDpiValue)
-        }
-        else{
-            viewModel.updateDpiNoRoot(newDpiValue)
-        }
+    private fun setDisplayDensity(newDpiValue: Int) {
+       viewModel.setDisplayDensity(newDpiValue)
     }
 
-    private fun showDpiDialog(newDpiValue:Int) {
+    private fun showDpiDialog(newDpiValue: Int) {
         if (viewModel.getShowConfirmationSetting()) {
             dialog = InputSheet().build(requireActivity()) {
                 title("Are you sure?\nDPI will be $newDpiValue")
@@ -98,16 +89,16 @@ class AdvancedFragment : Fragment(R.layout.fragment_advanced) {
                     if (check) {
                         viewModel.setShowConfirmationSetting(false)
                     }
-                    updateDpi(newDpiValue)
+                    setDisplayDensity(newDpiValue)
                 }
             }
             dialog.show()
         } else {
-            updateDpi(newDpiValue)
+            setDisplayDensity(newDpiValue)
         }
     }
 
-    private fun showTestDialog(newDpiValue:Int) {
+    private fun showTestDialog(newDpiValue: Int) {
         if (viewModel.getShowConfirmationSetting()) {
             dialog = InputSheet().build(requireActivity()) {
                 title("New configuration: $newDpiValue DPI\nWill reset in 15 seconds.")
@@ -126,22 +117,23 @@ class AdvancedFragment : Fragment(R.layout.fragment_advanced) {
                     if (check) {
                         viewModel.setShowConfirmationSetting(false)
                     }
-                    viewModel.saveCurrentConfiguration(getDpi(requireActivity()).toString().toInt())
-                    viewModel.delayedReset()
-                    updateDpi(binding.edittextDpiValue.text.toString().toInt())
+                    viewModel.saveCurrentConfiguration(viewModel.getDpi(requireActivity()).toString().toInt())
+                    viewModel.runDelayedReset()
+                    setDisplayDensity(binding.edittextDpiValue.text.toString().toInt())
                 }
             }
             dialog.show()
         } else {
-            viewModel.saveCurrentConfiguration(getDpi(requireActivity()).toString().toInt())
-            viewModel.delayedReset()
-            updateDpi(binding.edittextDpiValue.text.toString().toInt())
+            viewModel.saveCurrentConfiguration(viewModel.getDpi(requireActivity()).toString().toInt())
+            viewModel.runDelayedReset()
+            setDisplayDensity(binding.edittextDpiValue.text.toString().toInt())
         }
     }
-    private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
+
+    private fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
     private fun updateUi() {
-        binding.textviewDpiVal.text = getDpi(requireActivity()).toString()
-        binding.edittextDpiValue.text=getDpi(requireActivity()).toString().toEditable()
+        binding.textviewDpiVal.text = viewModel.getDpi(requireActivity()).toString()
+        binding.edittextDpiValue.text = viewModel.getDpi(requireActivity()).toString().toEditable()
     }
 
     override fun onDestroy() {
@@ -167,7 +159,7 @@ class AdvancedFragment : Fragment(R.layout.fragment_advanced) {
                                 "DEBUG",
                                 "SplashFragment -> updatePasswordResponse state is <LOADING>: $it"
                             )
-                            updateDpi(viewModel.oldDpi)
+                            setDisplayDensity(viewModel.oldDpi)
                             viewModel.resetDpiTriggerFlow()
                         }
 

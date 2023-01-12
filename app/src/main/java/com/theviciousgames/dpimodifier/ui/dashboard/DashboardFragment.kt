@@ -1,6 +1,7 @@
 package com.theviciousgames.dpimodifier.ui.dashboard
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -8,9 +9,9 @@ import androidx.navigation.fragment.findNavController
 import coil.load
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
+import com.maxkeppeler.sheets.input.type.InputEditText
 import com.theviciousgames.dpimodifier.R
 import com.theviciousgames.dpimodifier.databinding.FragmentDashboardBinding
-import com.theviciousgames.dpimodifier.getDpi
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -55,6 +56,9 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         binding.buttonReset.setOnClickListener {
            viewModel.resetDisplayDensity()
         }
+        binding.buttonAdd.setOnClickListener {
+            showPresetsDialog()
+        }
 
     }
     private fun showSettingsDialog() {
@@ -79,6 +83,31 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         }
         dialog.show()
     }
+
+    private fun showPresetsDialog() {
+
+        dialog = InputSheet().build(requireActivity()) {
+            title("Settings")
+            displayPositiveButton(true)
+            displayCloseButton(false)
+            displayNegativeButton(false)
+
+            with(InputEditText("preset_name") {
+                label("Preset's name")
+            })
+            with(InputEditText("preset_dpi") {
+                label("Preset's DPI")
+                inputType(InputType.TYPE_CLASS_NUMBER)
+            })
+            onNegative {}
+            onPositive { result ->
+                val check = result.getBoolean("never_show_checkbox")
+                viewModel.setShowConfirmationSetting(!check)
+            }
+        }
+        dialog.show()
+    }
+
     private fun updateUi()
     {
         binding.textviewDpiVal.text = getCurrentDpi().toString()
@@ -96,6 +125,6 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     }
 
     private fun getCurrentDpi(): Int {
-        return getDpi(requireActivity())
+        return viewModel.getDpi(requireActivity())
     }
 }
