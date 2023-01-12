@@ -11,10 +11,4 @@
         <item name="android:statusBarColor">#EFEEEE</item>
 
     </style>
-    <style name="CustomShapeAppearance">
-        <item name="neumorph_cornerFamily">rounded</item>
-        <item name="neumorph_cornerSize">16dp</item>
-        <item name="neumorph_cornerSizeTopLeft">64dp</item>
-        <item name="neumorph_cornerSizeTopRight">64dp</item>
-    </style>
 </resources>

@@ -1,5 +1,6 @@
 package com.theviciousgames.dpimodifier.ui.advanced
 
+import android.app.Activity
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,7 +22,6 @@ class AdvancedFragmentViewModel @Inject constructor(
     private val wmUtils: WmUtils
 ): ViewModel() {
 
-    var newDpi=290
     var oldDpi=290
 
     private val _resetDPI = MutableStateFlow(false)
@@ -30,9 +30,13 @@ class AdvancedFragmentViewModel @Inject constructor(
     private fun triggerResetDpi(value: Boolean) = viewModelScope.launch {
         _resetDPI.value = value
     }
-    fun updateDpiNoRoot(dpi:Int)
+    fun getDpi(activity: Activity):Int
     {
-        wmUtils.setDisplayDensity(dpi)
+        return wmUtils.getDisplayDensity(activity)
+    }
+    private fun getRootAccess(): Boolean
+    {
+        return suUtils.getRootAccess()
     }
     fun resetDpiTriggerFlow()
     {
@@ -42,31 +46,33 @@ class AdvancedFragmentViewModel @Inject constructor(
     {
         oldDpi=value
     }
-     fun delayedReset() {
+     fun runDelayedReset() {
         Timer().schedule(15000) {
             Log.d("debug","Reset DPI")
             triggerResetDpi(true)
         }
     }
 
-    fun hasRootAccess()
+    fun setDisplayDensity(value:Int)
     {
-        suUtils.hasRootAccess()
+        if(getRootAccess())
+        {
+            suUtils.setDisplayDensity(value)
+        }
+        else
+        {
+            wmUtils.setDisplayDensity(value)
+        }
     }
 
-    fun shellTest(cmd:String)
+    fun resetDisplayDensity()
     {
-        suUtils.shellRun(cmd)
-    }
-
-    fun updateDpiTo(dpi:Int)
-    {
-        suUtils.setDisplayDensity(dpi)
-    }
-
-    fun resetDpiToDefault()
-    {
-        suUtils.resetDisplayDensity()
+        if(getRootAccess())
+        {
+            suUtils.resetDisplayDensity()
+        }else{
+            wmUtils.resetDisplayDensity()
+        }
     }
 
     fun getShowConfirmationSetting():Boolean

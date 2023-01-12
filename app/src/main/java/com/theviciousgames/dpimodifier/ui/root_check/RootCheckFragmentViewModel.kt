@@ -14,30 +14,11 @@ class RootCheckFragmentViewModel @Inject constructor(
     private val permissionChecker: PermissionChecker
 ) : ViewModel() {
 
-    var newDpi=0
-    var oldDpi=0
-
      fun isWriteSecureSettingsPermissionGranted(context:Context): Boolean {
         return permissionChecker.isPermissionsGranted(context, android.Manifest.permission.WRITE_SECURE_SETTINGS)
     }
 
-    fun hasRootAccess(): Boolean
-    {
-        return suUtils.hasRootAccess()
-    }
-
-    fun shellTest(cmd:String)
-    {
-        suUtils.shellRun(cmd)
-    }
-
-    fun updateDpiTo(dpi:Int)
-    {
-        suUtils.setDisplayDensity(dpi)
-    }
-
-    fun resetDpiToDefault()
-    {
-        suUtils.resetDisplayDensity()
+    fun getRootAccess(): Boolean {
+        return suUtils.getRootAccess()
     }
 }

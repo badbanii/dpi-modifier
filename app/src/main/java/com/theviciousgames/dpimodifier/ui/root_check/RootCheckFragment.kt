@@ -14,7 +14,6 @@ import com.theviciousgames.dpimodifier.databinding.FragmentRootCheckBinding
 import com.theviciousgames.dpimodifier.utils.DeviceStatus
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
-import eu.chainfire.libsuperuser.Shell.SU
 
 @AndroidEntryPoint
 class RootCheckFragment : Fragment(R.layout.fragment_root_check) {
@@ -36,8 +35,17 @@ class RootCheckFragment : Fragment(R.layout.fragment_root_check) {
         }
     }
 
+    private fun getRootAccess():Boolean
+    {
+        return viewModel.getRootAccess()
+    }
+
+    private fun getWriteSecureSettingsAccess():Boolean
+    {
+        return viewModel.isWriteSecureSettingsPermissionGranted(requireContext())
+    }
     private fun updateUi() {
-        if (SU.available()) {
+        if (getRootAccess()) {
             deviceStatus=DeviceStatus.ROOTED
             binding.textviewRootStatus.text = "Your device is rooted."
             binding.imageviewRootStatus.load(R.drawable.ic_check)
@@ -47,7 +55,7 @@ class RootCheckFragment : Fragment(R.layout.fragment_root_check) {
             binding.textviewRootStatus.text = "Your device is not rooted."
             binding.imageviewRootStatus.load(R.drawable.ic_close)
 
-            if(viewModel.isWriteSecureSettingsPermissionGranted(requireContext()))
+            if(getWriteSecureSettingsAccess())
             {
                 deviceStatus=DeviceStatus.GRANTED_SECURE_PERMISSION
                 findNavController().navigate(R.id.action_rootCheckFragment_to_dashboardFragment)

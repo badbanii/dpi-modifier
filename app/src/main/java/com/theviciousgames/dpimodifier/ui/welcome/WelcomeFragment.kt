@@ -29,7 +29,6 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
        _binding = FragmentWelcomeBinding.bind(view)
         checkIfUserIsOld()
         buttonFunctions()
-
     }
 
     private fun buttonFunctions()

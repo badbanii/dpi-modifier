@@ -1,6 +1,8 @@
 package com.theviciousgames.dpimodifier.wm
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.util.DisplayMetrics
 import android.view.Display
 import com.theviciousgames.dpimodifier.utils.Constants
 import com.theviciousgames.dpimodifier.utils.Constants.CLASS_NAME_WINDOW_MANAGER
@@ -50,6 +52,10 @@ class WmUtils {
         } catch (_: Exception) {}
     }
 
-
-
+    fun getDisplayDensity(activity: Activity):Int
+    {
+        val dm = DisplayMetrics()
+        activity.windowManager.defaultDisplay.getRealMetrics(dm)
+        return dm.densityDpi
+    }
 }
