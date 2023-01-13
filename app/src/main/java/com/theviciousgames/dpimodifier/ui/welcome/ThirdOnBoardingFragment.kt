@@ -29,25 +29,23 @@ class ThirdOnBoardingFragment : Fragment(R.layout.fragment_onboarding) {
         buttonFunctions()
     }
 
-    private fun navigateToMainScreen()
-    {
+    private fun navigateToMainScreen() {
         findNavController().navigate(R.id.action_thirdOnBoardingFragment_to_rootCheckFragment)
     }
 
-    private fun setUserIsOld()
-    {
+    private fun setUserIsOld() {
         viewModel.setUserIsOld()
     }
 
-    private fun updateUi()
-    {
+    private fun updateUi() {
         with(binding)
         {
-            textviewTitle.text="Our website is waiting for you!"
-            textviewDescription.text="www.aBetterAndroid.com\nIf you're curious enough\n\uD83E\uDD14"
+            textviewTitle.text = "Our website is waiting for you!"
+            textviewDescription.text =
+                "www.aBetterAndroid.com\nIf you're curious enough\n\uD83E\uDD14"
             animationView.setAnimation(R.raw.lottie_website)
-            animationView.scaleType=ImageView.ScaleType.CENTER_CROP
-            buttonMoreApps.visibility=View.INVISIBLE
+            animationView.scaleType = ImageView.ScaleType.CENTER_CROP
+            buttonMoreApps.visibility = View.INVISIBLE
         }
     }
 

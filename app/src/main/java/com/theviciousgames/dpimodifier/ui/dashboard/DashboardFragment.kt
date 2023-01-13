@@ -23,7 +23,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     private val viewModel: DashboardFragmentViewModel by viewModels()
     private var dialog: InputSheet = InputSheet()
     private var presetAdapter: PresetAdapter? = null
-    private var presetList= mutableListOf<Preset>()
+    private var presetList = mutableListOf<Preset>()
 
     ///adb shell appops set foo.bar.package WRITE_SETTINGS allow
     ///Switch on "Developer Options" / "Disable Permission Monitoring" (at the end of the section)
@@ -46,13 +46,12 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         handleAddPresetButton()
     }
 
-    private fun addListToRecyclerView()
-    {
-        presetList=getPresetList().toMutableList()
+    private fun addListToRecyclerView() {
+        presetList = getPresetList().toMutableList()
         presetAdapter?.differ?.submitList(presetList)
     }
-    private fun buttonFunctions()
-    {
+
+    private fun buttonFunctions() {
         binding.buttonSettings.setOnClickListener {
             showSettingsDialog()
         }
@@ -66,12 +65,13 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             findNavController().navigate(R.id.action_dashboardFragment_to_advancedFragment)
         }
         binding.buttonReset.setOnClickListener {
-           viewModel.resetDisplayDensity()
+            viewModel.resetDisplayDensity()
         }
         binding.buttonAdd.setOnClickListener {
             showPresetsDialog()
         }
     }
+
     private fun showSettingsDialog() {
         dialog = InputSheet().build(requireActivity()) {
             title("Settings")
@@ -81,8 +81,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             with(InputCheckBox("never_show_checkbox") {
                 label("Hide confirmation when changing DPI?")
                 text("Yes")
-                if (!viewModel.getShowConfirmationSetting())
-                {
+                if (!viewModel.getShowConfirmationSetting()) {
                     defaultValue(true)
                 }
             })
@@ -119,7 +118,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                 val name = result.getString("preset_name")
                 val dpi = result.getString("preset_dpi")
 
-                name?.let { dpi?.let { it1 -> Preset(it, it1.toInt()) } }?.let { presetList.add(it) }
+                name?.let { dpi?.let { it1 -> Preset(it, it1.toInt()) } }
+                    ?.let { presetList.add(it) }
                 setPresetList(presetList)
                 setupRecyclerView()
                 addListToRecyclerView()
@@ -130,18 +130,14 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     }
 
 
-    private fun updateUi()
-    {
+    private fun updateUi() {
         binding.textviewDpiVal.text = getDisplayDensity().toString()
 
-        if(viewModel.getRootAccess())
-        {
-            binding.textviewRootStatus.text="Your device is rooted."
+        if (viewModel.getRootAccess()) {
+            binding.textviewRootStatus.text = "Your device is rooted."
             binding.imageviewRootStatus.load(R.drawable.ic_check)
-        }
-        else
-        {
-            binding.textviewRootStatus.text="Your device is not rooted."
+        } else {
+            binding.textviewRootStatus.text = "Your device is not rooted."
             binding.imageviewRootStatus.load(R.drawable.ic_close)
         }
     }
@@ -150,16 +146,15 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         return viewModel.getDisplayDensity(requireActivity())
     }
 
-    private fun getPresetList():List<Preset>
-    {
-       return viewModel.getPresetList()
+    private fun getPresetList(): List<Preset> {
+        return viewModel.getPresetList()
     }
 
-    private fun setDisplayDensity(value:Int)
-    {
+    private fun setDisplayDensity(value: Int) {
         viewModel.setDisplayDensity(value)
     }
-    private fun setPresetList(list:List<Preset>){
+
+    private fun setPresetList(list: List<Preset>) {
         viewModel.setPresetList(list)
     }
 
@@ -170,7 +165,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             setupRecyclerView()
             addListToRecyclerView()
             handleAddPresetButton()
-        },PresetAdapter.OnClickListenerSet{
+        }, PresetAdapter.OnClickListenerSet {
             setDisplayDensity(it.value)
         })
 
@@ -180,14 +175,11 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         }
     }
 
-    private fun handleAddPresetButton()
-    {
-        if(presetList.size>1)
-        {
-            binding.buttonAdd.visibility=View.GONE
-        }
-        else {
-            binding.buttonAdd.visibility=View.VISIBLE
+    private fun handleAddPresetButton() {
+        if (presetList.size > 1) {
+            binding.buttonAdd.visibility = View.GONE
+        } else {
+            binding.buttonAdd.visibility = View.VISIBLE
         }
     }
 }

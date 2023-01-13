@@ -1,6 +1,6 @@
 package com.theviciousgames.dpimodifier.utils
 
-enum class Operation() {
+enum class Operation {
     INCREASE(),
     DECREASE()
 }

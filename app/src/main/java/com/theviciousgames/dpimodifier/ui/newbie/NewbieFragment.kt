@@ -43,28 +43,28 @@ class NewbieFragment : Fragment(R.layout.fragment_newbie) {
         }
     }
 
-    private fun resetDisplayDensity()
-    {
+    private fun resetDisplayDensity() {
         viewModel.resetDisplayDensity()
     }
+
     private fun decreaseDpiButtonPressed() {
         showDpiDialog(Operation.DECREASE)
     }
 
     private fun increaseDpiButtonPressed() {
-      showDpiDialog(Operation.INCREASE)
+        showDpiDialog(Operation.INCREASE)
     }
 
-    private fun setDisplayDensity(newDpiValue: Int,operation: Operation) {
-        viewModel.setDisplayDensity(newDpiValue,operation)
+    private fun setDisplayDensity(newDpiValue: Int, operation: Operation) {
+        viewModel.setDisplayDensity(newDpiValue, operation)
     }
-    private fun getDisplayDensity():Int
-    {
+
+    private fun getDisplayDensity(): Int {
         return viewModel.getDisplayDensity(requireActivity())
     }
 
     private fun setDisplayDensity(operation: Operation) {
-        setDisplayDensity(getDisplayDensity(),operation)
+        setDisplayDensity(getDisplayDensity(), operation)
     }
 
     private fun showSettingsDialog() {
@@ -76,8 +76,7 @@ class NewbieFragment : Fragment(R.layout.fragment_newbie) {
             with(InputCheckBox("never_show_checkbox") {
                 label("Hide confirmation when changing DPI?")
                 text("Yes")
-                if (!viewModel.getShowConfirmationSetting())
-                {
+                if (!viewModel.getShowConfirmationSetting()) {
                     defaultValue(true)
                 }
             })

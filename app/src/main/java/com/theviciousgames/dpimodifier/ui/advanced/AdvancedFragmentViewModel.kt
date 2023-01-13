@@ -20,9 +20,9 @@ import kotlin.concurrent.schedule
 class AdvancedFragmentViewModel @Inject constructor(
     private val suUtils: SuUtils,
     private val wmUtils: WmUtils
-): ViewModel() {
+) : ViewModel() {
 
-    var oldDpi=290
+    var oldDpi = 290
 
     private val _resetDPI = MutableStateFlow(false)
     val resetDpi: StateFlow<Boolean> = _resetDPI
@@ -30,58 +30,51 @@ class AdvancedFragmentViewModel @Inject constructor(
     private fun triggerResetDpi(value: Boolean) = viewModelScope.launch {
         _resetDPI.value = value
     }
-    fun getDpi(activity: Activity):Int
-    {
+
+    fun getDpi(activity: Activity): Int {
         return wmUtils.getDisplayDensity(activity)
     }
-    private fun getRootAccess(): Boolean
-    {
+
+    private fun getRootAccess(): Boolean {
         return suUtils.getRootAccess()
     }
-    fun resetDpiTriggerFlow()
-    {
-        _resetDPI.value=false
+
+    fun resetDpiTriggerFlow() {
+        _resetDPI.value = false
     }
-    fun saveCurrentConfiguration(value:Int)
-    {
-        oldDpi=value
+
+    fun saveCurrentConfiguration(value: Int) {
+        oldDpi = value
     }
-     fun runDelayedReset() {
+
+    fun runDelayedReset() {
         Timer().schedule(15000) {
-            Log.d("debug","Reset DPI")
+            Log.d("debug", "Reset DPI")
             triggerResetDpi(true)
         }
     }
 
-    fun setDisplayDensity(value:Int)
-    {
-        if(getRootAccess())
-        {
+    fun setDisplayDensity(value: Int) {
+        if (getRootAccess()) {
             suUtils.setDisplayDensity(value)
-        }
-        else
-        {
+        } else {
             wmUtils.setDisplayDensity(value)
         }
     }
 
-    fun resetDisplayDensity()
-    {
-        if(getRootAccess())
-        {
+    fun resetDisplayDensity() {
+        if (getRootAccess()) {
             suUtils.resetDisplayDensity()
-        }else{
+        } else {
             wmUtils.resetDisplayDensity()
         }
     }
 
-    fun getShowConfirmationSetting():Boolean
-    {
-        return Stash.getBoolean(Constants.SHOW_CHANGE_CONFIRMATION,true)
+    fun getShowConfirmationSetting(): Boolean {
+        return Stash.getBoolean(Constants.SHOW_CHANGE_CONFIRMATION, true)
     }
 
-    fun setShowConfirmationSetting(value:Boolean)
-    {
-        Stash.put(Constants.SHOW_CHANGE_CONFIRMATION,value)
+    fun setShowConfirmationSetting(value: Boolean) {
+        Stash.put(Constants.SHOW_CHANGE_CONFIRMATION, value)
     }
 }

@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.theviciousgames.dpimodifier.databinding.ItemPresetBinding
 import com.theviciousgames.dpimodifier.model.Preset
 
-class PresetAdapter(private val onClickListenerDelete: OnClickListenerDelete,private val onClickListenerSet:OnClickListenerSet) :
+class PresetAdapter(
+    private val onClickListenerDelete: OnClickListenerDelete,
+    private val onClickListenerSet: OnClickListenerSet
+) :
     RecyclerView.Adapter<PresetAdapter.PresetViewHolder>() {
 
     class OnClickListenerDelete(val clickListener: (preset: Preset) -> Unit) {
@@ -60,7 +63,7 @@ class PresetAdapter(private val onClickListenerDelete: OnClickListenerDelete,pri
         fun bind(preset: Preset) {
             with(binding)
             {
-                button.text="${preset.name}  ->  ${preset.value} dpi"
+                button.text = "${preset.name}  ->  ${preset.value} dpi"
                 buttonRemove.setOnClickListener {
                     onClickListenerDelete.clickListener(preset)
                 }

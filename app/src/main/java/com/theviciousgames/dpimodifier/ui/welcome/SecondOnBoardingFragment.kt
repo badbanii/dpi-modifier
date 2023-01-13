@@ -30,20 +30,19 @@ class SecondOnBoardingFragment : Fragment(R.layout.fragment_onboarding) {
         buttonFunctions()
     }
 
-    private fun navigateToThirdOnBoardingScreen()
-    {
+    private fun navigateToThirdOnBoardingScreen() {
         findNavController().navigate(R.id.action_secondOnBoardingFragment_to_thirdOnBoardingFragment)
     }
 
-    private fun updateUi()
-    {
+    private fun updateUi() {
         with(binding)
         {
-            textviewTitle.text="Check out our other apps!"
-            textviewDescription.text="Are you looking to change your resolution? Check your device's HDR version?\nVisit us by pressing 'more'!\naBetterAndroid has everything you need."
+            textviewTitle.text = "Check out our other apps!"
+            textviewDescription.text =
+                "Are you looking to change your resolution? Check your device's HDR version?\nVisit us by pressing 'more'!\naBetterAndroid has everything you need."
             animationView.setAnimation(R.raw.lottie_more)
-            animationView.scaleType=ImageView.ScaleType.CENTER_CROP
-            buttonMoreApps.visibility=View.VISIBLE
+            animationView.scaleType = ImageView.ScaleType.CENTER_CROP
+            buttonMoreApps.visibility = View.VISIBLE
         }
     }
 

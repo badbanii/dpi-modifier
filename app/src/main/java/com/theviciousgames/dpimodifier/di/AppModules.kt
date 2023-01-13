@@ -20,14 +20,13 @@ object AppModules {
 
     @Provides
     @Singleton
-    fun provideWmUtils():WmUtils{
+    fun provideWmUtils(): WmUtils {
         return WmUtils()
     }
 
     @Provides
     @Singleton
-    fun providePermissionChecker():PermissionChecker
-    {
+    fun providePermissionChecker(): PermissionChecker {
         return PermissionChecker()
     }
 }

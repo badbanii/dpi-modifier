@@ -5,14 +5,13 @@ import com.fxn.stash.Stash
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class DpiApp: Application() {
+class DpiApp : Application() {
     override fun onCreate() {
         super.onCreate()
         initializeStash()
     }
 
-    private fun initializeStash()
-    {
+    private fun initializeStash() {
         Stash.init(this)
     }
 }
