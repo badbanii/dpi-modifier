@@ -17,7 +17,7 @@ class DpiActivity : AppCompatActivity() {
     private lateinit var analytics: FirebaseAnalytics
 
     private fun forceDayMode() {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 
     private fun initializeFirebase() {

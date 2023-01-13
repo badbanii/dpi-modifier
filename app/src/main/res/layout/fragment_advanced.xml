@@ -93,6 +93,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
+    <soup.neumorphism.NeumorphImageButton
+        android:id="@+id/button_reset"
+        style="@style/Widget.Neumorph.ImageButton"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_reset"
+        app:layout_constraintTop_toBottomOf="@id/button_settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
     <soup.neumorphism.NeumorphButton
         android:id="@+id/button_test"
         style="@style/Widget.Neumorph.Button"

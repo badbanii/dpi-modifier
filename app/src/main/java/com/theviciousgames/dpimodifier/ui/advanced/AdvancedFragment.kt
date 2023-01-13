@@ -29,19 +29,29 @@ class AdvancedFragment : Fragment(R.layout.fragment_advanced) {
         get() = _binding!!
 
     private fun buttonFunctions() {
-        binding.buttonBack.setOnClickListener {
-            findNavController().navigateUp()
-        }
-        binding.buttonConfirm.setOnClickListener {
-            showDpiDialog(binding.edittextDpiValue.text.toString().toInt())
-        }
+        with(binding)
+        {
+            buttonBack.setOnClickListener {
+                findNavController().navigateUp()
+            }
+            buttonConfirm.setOnClickListener {
+                showDpiDialog(binding.edittextDpiValue.text.toString().toInt())
+            }
 
-        binding.buttonSettings.setOnClickListener {
-            showSettingsDialog()
+            buttonSettings.setOnClickListener {
+                showSettingsDialog()
+            }
+            buttonTest.setOnClickListener {
+                showTestDialog(binding.edittextDpiValue.text.toString().toInt())
+            }
+            buttonReset.setOnClickListener {
+                resetDisplayDensity()
+            }
         }
-        binding.buttonTest.setOnClickListener {
-            showTestDialog(binding.edittextDpiValue.text.toString().toInt())
-        }
+    }
+
+    private fun resetDisplayDensity() {
+        viewModel.resetDisplayDensity()
     }
 
     private fun showSettingsDialog() {
@@ -67,7 +77,7 @@ class AdvancedFragment : Fragment(R.layout.fragment_advanced) {
     }
 
     private fun setDisplayDensity(newDpiValue: Int) {
-       viewModel.setDisplayDensity(newDpiValue)
+        viewModel.setDisplayDensity(newDpiValue)
     }
 
     private fun showDpiDialog(newDpiValue: Int) {
@@ -117,14 +127,18 @@ class AdvancedFragment : Fragment(R.layout.fragment_advanced) {
                     if (check) {
                         viewModel.setShowConfirmationSetting(false)
                     }
-                    viewModel.saveCurrentConfiguration(viewModel.getDpi(requireActivity()).toString().toInt())
+                    viewModel.saveCurrentConfiguration(
+                        viewModel.getDpi(requireActivity()).toString().toInt()
+                    )
                     viewModel.runDelayedReset()
                     setDisplayDensity(binding.edittextDpiValue.text.toString().toInt())
                 }
             }
             dialog.show()
         } else {
-            viewModel.saveCurrentConfiguration(viewModel.getDpi(requireActivity()).toString().toInt())
+            viewModel.saveCurrentConfiguration(
+                viewModel.getDpi(requireActivity()).toString().toInt()
+            )
             viewModel.runDelayedReset()
             setDisplayDensity(binding.edittextDpiValue.text.toString().toInt())
         }

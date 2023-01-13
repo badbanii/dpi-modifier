@@ -5,38 +5,27 @@ import com.topjohnwu.superuser.Shell
 import eu.chainfire.libsuperuser.Shell.SU
 
 class SuUtils {
-     fun setDisplayDensity(dpi:Int)
-    {
+    fun setDisplayDensity(dpi: Int) {
         Shell.cmd("wm density $dpi").submit { result: Shell.Result? ->
-            Log.d("debug",
+            Log.d(
+                "debug",
                 result?.out.toString()
             )
-            Log.d("debug","error: "+result?.err.toString())
+            Log.d("debug", "error: " + result?.err.toString())
         }
     }
 
-    fun resetDisplayDensity()
-    {
+    fun resetDisplayDensity() {
         Shell.cmd("wm density reset").submit { result: Shell.Result? ->
-            Log.d("debug",
-                "result: "+result?.out.toString()
+            Log.d(
+                "debug",
+                "result: " + result?.out.toString()
             )
-            Log.d("debug","error: "+result?.err.toString())
+            Log.d("debug", "error: " + result?.err.toString())
         }
     }
 
-    fun shellRun(cmd:String)
-    {
-        Shell.cmd(cmd).submit { result: Shell.Result? ->
-            Log.d("debug",
-                "out "+result?.out.toString()
-            )
-            Log.d("debug","error: "+result?.err.toString())
-        }
-    }
-
-     fun getRootAccess():Boolean
-    {
+    fun getRootAccess(): Boolean {
         return SU.available()
     }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="70dp"
+    android:background="#EFEEEE"
+    android:orientation="horizontal"
+    android:weightSum="4">
+
+    <soup.neumorphism.NeumorphButton
+        android:id="@+id/button"
+        android:layout_weight="3"
+        style="@style/Widget.Neumorph.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawablePadding="0dp"
+        tools:text="gaming      350 dpi"
+        android:fontFamily="@font/google_sans_text_bold"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        app:drawableStartCompat="@drawable/ic_preset" />
+
+    <soup.neumorphism.NeumorphButton
+        android:layout_weight="1"
+        android:id="@+id/button_remove"
+        style="@style/Widget.Neumorph.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawablePadding="0dp"
+        android:textColor="@color/black"
+        app:drawableStartCompat="@drawable/ic_remove" />
+
+
+</LinearLayout>

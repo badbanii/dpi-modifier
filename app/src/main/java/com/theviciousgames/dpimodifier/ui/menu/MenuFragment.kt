@@ -22,17 +22,16 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
 
     override fun onDestroy() {
         super.onDestroy()
-          _binding = null
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       _binding = FragmentMenuBinding.bind(view)
+        _binding = FragmentMenuBinding.bind(view)
         buttonFunctions()
     }
 
-    private fun buttonFunctions()
-    {
+    private fun buttonFunctions() {
         binding.buttonBack.setOnClickListener {
             findNavController().navigateUp()
         }
@@ -54,15 +53,19 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
             )
         }
     }
+
     private fun showSharingDialog() {
         val intent = Intent()
         intent.action = Intent.ACTION_SEND
         intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_TEXT, "Download DPI Changer:\nhttps://play.google.com/store/apps/details?id=com.theviciousgames.dpimodifier")
+        intent.putExtra(
+            Intent.EXTRA_TEXT,
+            "Download DPI Changer:\nhttps://play.google.com/store/apps/details?id=com.theviciousgames.dpimodifier"
+        )
         startActivity(Intent.createChooser(intent, "Share with:"))
     }
-    private fun closeApp()
-    {
+
+    private fun closeApp() {
         finishAffinity(requireActivity())
         requireActivity().finish()
         exitProcess(0)

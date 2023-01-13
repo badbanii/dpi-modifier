@@ -17,56 +17,43 @@ class NewbieFragmentViewModel @Inject constructor(
     private val wmUtils: WmUtils
 ) : ViewModel() {
 
-    private fun getRootAccess(): Boolean
-    {
+    private fun getRootAccess(): Boolean {
         return suUtils.getRootAccess()
     }
 
-    fun getDisplayDensity(activity: Activity):Int
-    {
+    fun getDisplayDensity(activity: Activity): Int {
         return wmUtils.getDisplayDensity(activity)
     }
 
-    fun setDisplayDensity(value:Int,operation: Operation)
-    {
-        if(getRootAccess())
-        {
-            if(operation==Operation.INCREASE){
-                suUtils.setDisplayDensity(value+5)
+    fun setDisplayDensity(value: Int, operation: Operation) {
+        if (getRootAccess()) {
+            if (operation == Operation.INCREASE) {
+                suUtils.setDisplayDensity(value + 5)
+            } else {
+                suUtils.setDisplayDensity(value - 5)
             }
-            else{
-                suUtils.setDisplayDensity(value-5)
-            }
-        }
-        else
-        {
-            if(operation==Operation.INCREASE)
-            {
-                wmUtils.setDisplayDensity(value+5)
-            }
-            else{
-                wmUtils.setDisplayDensity(value-5)
+        } else {
+            if (operation == Operation.INCREASE) {
+                wmUtils.setDisplayDensity(value + 5)
+            } else {
+                wmUtils.setDisplayDensity(value - 5)
             }
         }
     }
 
-    fun resetDisplayDensity()
-    {
-        if(getRootAccess())
-        {
+    fun resetDisplayDensity() {
+        if (getRootAccess()) {
             suUtils.resetDisplayDensity()
-        }else{
+        } else {
             wmUtils.resetDisplayDensity()
         }
     }
 
-    fun getShowConfirmationSetting():Boolean
-    {
-        return Stash.getBoolean(Constants.SHOW_CHANGE_CONFIRMATION,true)
+    fun getShowConfirmationSetting(): Boolean {
+        return Stash.getBoolean(Constants.SHOW_CHANGE_CONFIRMATION, true)
     }
 
-    fun setShowConfirmationSetting(value:Boolean)
-    {
-        Stash.put(Constants.SHOW_CHANGE_CONFIRMATION,value)
+    fun setShowConfirmationSetting(value: Boolean) {
+        Stash.put(Constants.SHOW_CHANGE_CONFIRMATION, value)
     }
 }
